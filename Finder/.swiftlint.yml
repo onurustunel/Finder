@@ -1,0 +1,3 @@
+excluded:
+    - Finder/Management/AppDelegate.swift
+    - Finder/Management/SceneDelegate.swift
