@@ -19,6 +19,8 @@
 		7727ECAD27500E1C00358027 /* Animation+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECAC27500E1C00358027 /* Animation+UIView.swift */; };
 		7727ECB227501A0B00358027 /* UserListTopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECB127501A0B00358027 /* UserListTopStackView.swift */; };
 		7727ECBF27501ECE00358027 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECBE27501ECE00358027 /* UserProfileView.swift */; };
+		7727ECC5275032F600358027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECC4275032F600358027 /* User.swift */; };
+		7727ECCA2750347300358027 /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECC92750347300358027 /* Extension+UIFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		7727ECAC27500E1C00358027 /* Animation+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+UIView.swift"; sourceTree = "<group>"; };
 		7727ECB127501A0B00358027 /* UserListTopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTopStackView.swift; sourceTree = "<group>"; };
 		7727ECBE27501ECE00358027 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		7727ECC4275032F600358027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7727ECC92750347300358027 /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		77195A70274ECA56006B30C4 /* Finder */ = {
 			isa = PBXGroup;
 			children = (
+				7727ECC3275032DA00358027 /* Model */,
 				7727ECA627500B1D00358027 /* View */,
 				77195AB9274ED792006B30C4 /* Extensions */,
 				77195AB1274ECC9A006B30C4 /* Controller */,
@@ -158,6 +163,7 @@
 			children = (
 				77195ABA274ED7F7006B30C4 /* Extension+UIView.swift */,
 				7727ECAC27500E1C00358027 /* Animation+UIView.swift */,
+				7727ECC92750347300358027 /* Extension+UIFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -170,6 +176,14 @@
 				7727ECBE27501ECE00358027 /* UserProfileView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7727ECC3275032DA00358027 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7727ECC4275032F600358027 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,11 +337,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7727ECCA2750347300358027 /* Extension+UIFont.swift in Sources */,
 				77195A76274ECA56006B30C4 /* UserListViewController.swift in Sources */,
 				7727ECAD27500E1C00358027 /* Animation+UIView.swift in Sources */,
 				77195A72274ECA56006B30C4 /* AppDelegate.swift in Sources */,
 				7727ECBF27501ECE00358027 /* UserProfileView.swift in Sources */,
 				77195ABB274ED7F7006B30C4 /* Extension+UIView.swift in Sources */,
+				7727ECC5275032F600358027 /* User.swift in Sources */,
 				7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */,
 				7727ECB227501A0B00358027 /* UserListTopStackView.swift in Sources */,
 				77195A74274ECA56006B30C4 /* SceneDelegate.swift in Sources */,
