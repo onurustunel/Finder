@@ -15,6 +15,10 @@
 		77195A89274ECA5A006B30C4 /* FinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195A88274ECA5A006B30C4 /* FinderTests.swift */; };
 		77195A94274ECA5A006B30C4 /* FinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195A93274ECA5A006B30C4 /* FinderUITests.swift */; };
 		77195ABB274ED7F7006B30C4 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195ABA274ED7F7006B30C4 /* Extension+UIView.swift */; };
+		7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECA727500B6000358027 /* UserListBottomStackView.swift */; };
+		7727ECAD27500E1C00358027 /* Animation+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECAC27500E1C00358027 /* Animation+UIView.swift */; };
+		7727ECB227501A0B00358027 /* UserListTopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECB127501A0B00358027 /* UserListTopStackView.swift */; };
+		7727ECBF27501ECE00358027 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECBE27501ECE00358027 /* UserProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		77195A93274ECA5A006B30C4 /* FinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderUITests.swift; sourceTree = "<group>"; };
 		77195A95274ECA5A006B30C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77195ABA274ED7F7006B30C4 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		7727ECA727500B6000358027 /* UserListBottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListBottomStackView.swift; sourceTree = "<group>"; };
+		7727ECAC27500E1C00358027 /* Animation+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+UIView.swift"; sourceTree = "<group>"; };
+		7727ECB127501A0B00358027 /* UserListTopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTopStackView.swift; sourceTree = "<group>"; };
+		7727ECBE27501ECE00358027 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		77195A70274ECA56006B30C4 /* Finder */ = {
 			isa = PBXGroup;
 			children = (
+				7727ECA627500B1D00358027 /* View */,
 				77195AB9274ED792006B30C4 /* Extensions */,
 				77195AB1274ECC9A006B30C4 /* Controller */,
 				77195AA7274ECB03006B30C4 /* Management */,
@@ -148,8 +157,19 @@
 			isa = PBXGroup;
 			children = (
 				77195ABA274ED7F7006B30C4 /* Extension+UIView.swift */,
+				7727ECAC27500E1C00358027 /* Animation+UIView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7727ECA627500B1D00358027 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7727ECA727500B6000358027 /* UserListBottomStackView.swift */,
+				7727ECB127501A0B00358027 /* UserListTopStackView.swift */,
+				7727ECBE27501ECE00358027 /* UserProfileView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,8 +324,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				77195A76274ECA56006B30C4 /* UserListViewController.swift in Sources */,
+				7727ECAD27500E1C00358027 /* Animation+UIView.swift in Sources */,
 				77195A72274ECA56006B30C4 /* AppDelegate.swift in Sources */,
+				7727ECBF27501ECE00358027 /* UserProfileView.swift in Sources */,
 				77195ABB274ED7F7006B30C4 /* Extension+UIView.swift in Sources */,
+				7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */,
+				7727ECB227501A0B00358027 /* UserListTopStackView.swift in Sources */,
 				77195A74274ECA56006B30C4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
