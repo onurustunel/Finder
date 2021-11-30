@@ -21,6 +21,8 @@
 		7727ECBF27501ECE00358027 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECBE27501ECE00358027 /* UserProfileView.swift */; };
 		7727ECC5275032F600358027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECC4275032F600358027 /* User.swift */; };
 		7727ECCA2750347300358027 /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECC92750347300358027 /* Extension+UIFont.swift */; };
+		7739BC602756B1250098EAB1 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7739BC5F2756B1250098EAB1 /* UserProfileViewModel.swift */; };
+		7739BC6B2756B5B70098EAB1 /* Advertise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7739BC6A2756B5B70098EAB1 /* Advertise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		7727ECBE27501ECE00358027 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		7727ECC4275032F600358027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7727ECC92750347300358027 /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
+		7739BC5F2756B1250098EAB1 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		7739BC6A2756B5B70098EAB1 /* Advertise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertise.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 		77195A70274ECA56006B30C4 /* Finder */ = {
 			isa = PBXGroup;
 			children = (
+				7739BC5E2756B1070098EAB1 /* ViewModel */,
 				7727ECC3275032DA00358027 /* Model */,
 				7727ECA627500B1D00358027 /* View */,
 				77195AB9274ED792006B30C4 /* Extensions */,
@@ -182,8 +187,17 @@
 			isa = PBXGroup;
 			children = (
 				7727ECC4275032F600358027 /* User.swift */,
+				7739BC6A2756B5B70098EAB1 /* Advertise.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7739BC5E2756B1070098EAB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7739BC5F2756B1250098EAB1 /* UserProfileViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,10 +352,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7727ECCA2750347300358027 /* Extension+UIFont.swift in Sources */,
+				7739BC6B2756B5B70098EAB1 /* Advertise.swift in Sources */,
 				77195A76274ECA56006B30C4 /* UserListViewController.swift in Sources */,
 				7727ECAD27500E1C00358027 /* Animation+UIView.swift in Sources */,
 				77195A72274ECA56006B30C4 /* AppDelegate.swift in Sources */,
 				7727ECBF27501ECE00358027 /* UserProfileView.swift in Sources */,
+				7739BC602756B1250098EAB1 /* UserProfileViewModel.swift in Sources */,
 				77195ABB274ED7F7006B30C4 /* Extension+UIView.swift in Sources */,
 				7727ECC5275032F600358027 /* User.swift in Sources */,
 				7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */,

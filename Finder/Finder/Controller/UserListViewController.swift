@@ -11,10 +11,15 @@ class UserListViewController: UIViewController {
     let topStackView = UserListTopStackView()
     let bottomStackView = UserListBottomStackView()
     let profilesView = UIView()
-    var users = [ User(username: "Gencay1", occupation: "Gencayyy", age: 11, imageName: "gencay"),
-                  User(username: "Gencay2", occupation: "Gencayyyy", age: 22, imageName: "gencay"),
-                  User(username: "Gencay2", occupation: "Gencayyy", age: 33, imageName: "gencay")]
-    override func viewDidLoad() {
+    var users : [UserProfileViewModel] = {
+   let profiles = [User(username: "Gencay1", occupation: "Gencayyy", age: 11, imageName: "gencay"),
+    User(username: "Gencay2", occupation: "Gencayyyy", age: 22, imageName: "gencay"),
+    User(username: "Gencay2", occupation: "Gencayyy", age: 33, imageName: "gencay"),
+    Advertise(title: "November Sale", brandName: "Nike", imageName: "nike", infoLocation: .center)] as [UserProfileViewModelCreator]
+        let viewModels = profiles.map(({ $0.profileViewModelCreator() }))
+        return viewModels
+    }(  )
+            override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureProfiles()
@@ -32,14 +37,11 @@ class UserListViewController: UIViewController {
         mainStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
     }
     private func configureProfiles() {
-        users.forEach { (user) in
+        users.forEach { (userViewModel) in
             let profileView = UserProfileView(frame: .zero)
+            profileView.userViewModel = userViewModel
             profilesView.addSubview(profileView)
-            let attributedText = NSMutableAttributedString(string: "\(user.username),", attributes: [.font: AppFont.appFontStyle(size: 22, style: .bold)])
-            attributedText.append(NSAttributedString(string: " \(user.age)", attributes: [.font: AppFont.appFontStyle(size: 18, style: .bold)]))
-            attributedText.append(NSAttributedString(string: "\n\(user.occupation)", attributes: [.font: AppFont.appFontStyle(size: 18, style: .normal)]))            
             profileView.fillSuperView()
-            profileView.usernameLabel.attributedText = attributedText
         }
     }
 }
