@@ -9,7 +9,7 @@ import UIKit
 
 struct UserProfileViewModel {
     let attributedString : NSAttributedString
-    let imageName : String
+    let imageNames : [String]
     let infoLocation : NSTextAlignment
     
 }

@@ -11,6 +11,7 @@ class UserProfileView: UIView {
     var userViewModel : UserProfileViewModel! {
         didSet {
             updateUI()
+            imageTopViewConfigure(count: userViewModel.imageNames.count)
         }
     }
     private lazy var imageView: UIImageView = {
@@ -34,6 +35,8 @@ class UserProfileView: UIView {
         configureUI()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(profilePanGesture))
         addGestureRecognizer(panGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changePicture))
+        addGestureRecognizer(tapGesture)
     }    
     @objc func profilePanGesture(panGesture: UIPanGestureRecognizer) {
         switch panGesture.state {
@@ -49,6 +52,22 @@ class UserProfileView: UIView {
             break
         }
     }
+    var imageIndex = 0
+    @objc func changePicture(tapGesture: UITapGestureRecognizer) {
+        let location = tapGesture.location(in: nil)
+        let nextPhoto = location.x > frame.width / 2 ? true : false
+        if nextPhoto {
+            imageIndex = imageIndex + 1 >= userViewModel.imageNames.count ? 0 : imageIndex + 1
+        } else {
+            imageIndex = imageIndex - 1 < 0 ? userViewModel.imageNames.count - 1 : imageIndex - 1
+        }
+        imageBarStackView.arrangedSubviews.forEach { (view) in
+            view.backgroundColor = ConstantColor.gray
+        }
+        imageBarStackView.arrangedSubviews[imageIndex].backgroundColor = ConstantColor.white
+        let imageName = userViewModel.imageNames[imageIndex]
+        imageView.image = UIImage(named: imageName)
+    }
     fileprivate func endPanGesture(_ panGesture: UIPanGestureRecognizer) {
         let translationDirection: CGFloat = panGesture.translation(in: nil).x > 0 ? 1 : -1
         var hideProfile: Bool = abs(panGesture.translation(in: nil).x) > frameLimit
@@ -63,6 +82,21 @@ class UserProfileView: UIView {
             print( "animation ended")
         }
     }
+    fileprivate let imageBarStackView = UIStackView()
+    fileprivate func imageBarPresenter() {
+        addSubview(imageBarStackView)
+        imageBarStackView.anchor(top: topAnchor, bottom: nil, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: CGSize(width: 0, height: 4))
+        imageBarStackView.spacing = 4
+        imageBarStackView.distribution = .fillEqually
+    }
+    fileprivate func imageTopViewConfigure(count: Int) {
+        (0..<count).forEach { (_) in
+            let pView = UIView()
+            pView.backgroundColor = ConstantColor.gray
+            imageBarStackView.addArrangedSubview(pView)
+        }
+        imageBarStackView.arrangedSubviews.first?.backgroundColor = ConstantColor.white
+    }    
     fileprivate func gradientLayerMaker() {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.3, 1.3]
@@ -89,9 +123,11 @@ class UserProfileView: UIView {
         addSubview(usernameLabel)
         usernameLabel.anchor(top: nil, bottom: self.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor,
                              padding: .init(top: 0, left: 20, bottom: 20, right: 20))
+        imageBarPresenter()
     }
     private func updateUI() {
-        imageView.image = UIImage(named: userViewModel.imageName)
+        let imageName = userViewModel.imageNames.first ?? ""
+        imageView.image = UIImage(named: imageName)
         usernameLabel.attributedText = userViewModel.attributedString
         usernameLabel.textAlignment = userViewModel.infoLocation
     }

@@ -14,6 +14,6 @@ struct Advertise: UserProfileViewModelCreator {
     func profileViewModelCreator() -> UserProfileViewModel {
         let attributedText = NSMutableAttributedString(string: "\(title),", attributes: [.font: AppFont.appFontStyle(size: 30, style: .bold)])
         attributedText.append(NSAttributedString(string: "\n \(brandName)", attributes: [.font: AppFont.appFontStyle(size: 24, style: .bold)]))
-        return UserProfileViewModel(attributedString: attributedText, imageName: imageName, infoLocation: .center)
+        return UserProfileViewModel(attributedString: attributedText, imageNames: [imageName], infoLocation: .center)
     }
 }

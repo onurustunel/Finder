@@ -1,3 +1,5 @@
 excluded:
     - Finder/Management/AppDelegate.swift
     - Finder/Management/SceneDelegate.swift
+disabled_rules:
+    - shorthand_operator
