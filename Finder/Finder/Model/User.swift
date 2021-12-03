@@ -14,7 +14,7 @@ struct User: UserProfileViewModelCreator {
     func profileViewModelCreator() -> UserProfileViewModel {
         let attributedText = NSMutableAttributedString(string: "\(username),", attributes: [.font: AppFont.appFontStyle(size: 22, style: .bold)])
         attributedText.append(NSAttributedString(string: " \(age)", attributes: [.font: AppFont.appFontStyle(size: 18, style: .bold)]))
-        attributedText.append(NSAttributedString(string: "\n\(occupation)", attributes: [.font: AppFont.appFontStyle(size: 18, style: .normal)]))
+        attributedText.append(NSAttributedString(string: "\n🍻\(occupation)", attributes: [.font: AppFont.appFontStyle(size: 16, style: .bold)]))
         return UserProfileViewModel(attributedString: attributedText, imageNames: imageNames, infoLocation: .left)
     }
 }

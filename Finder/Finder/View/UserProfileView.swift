@@ -56,17 +56,7 @@ class UserProfileView: UIView {
     @objc func changePicture(tapGesture: UITapGestureRecognizer) {
         let location = tapGesture.location(in: nil)
         let nextPhoto = location.x > frame.width / 2 ? true : false
-        if nextPhoto {
-            imageIndex = imageIndex + 1 >= userViewModel.imageNames.count ? 0 : imageIndex + 1
-        } else {
-            imageIndex = imageIndex - 1 < 0 ? userViewModel.imageNames.count - 1 : imageIndex - 1
-        }
-        imageBarStackView.arrangedSubviews.forEach { (view) in
-            view.backgroundColor = ConstantColor.gray
-        }
-        imageBarStackView.arrangedSubviews[imageIndex].backgroundColor = ConstantColor.white
-        let imageName = userViewModel.imageNames[imageIndex]
-        imageView.image = UIImage(named: imageName)
+        nextPhoto ? userViewModel.showNextImage() : userViewModel.showPreviousPhoto()
     }
     fileprivate func endPanGesture(_ panGesture: UIPanGestureRecognizer) {
         let translationDirection: CGFloat = panGesture.translation(in: nil).x > 0 ? 1 : -1
@@ -96,6 +86,7 @@ class UserProfileView: UIView {
             imageBarStackView.addArrangedSubview(pView)
         }
         imageBarStackView.arrangedSubviews.first?.backgroundColor = ConstantColor.white
+        imageIndexObserve()
     }    
     fileprivate func gradientLayerMaker() {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
@@ -130,5 +121,14 @@ class UserProfileView: UIView {
         imageView.image = UIImage(named: imageName)
         usernameLabel.attributedText = userViewModel.attributedString
         usernameLabel.textAlignment = userViewModel.infoLocation
+    }
+    private func imageIndexObserve() {
+        userViewModel.imageIndexObserver = { (index, image) in
+            self.imageBarStackView.arrangedSubviews.forEach { (subView) in
+                subView.backgroundColor = ConstantColor.gray
+            }
+            self.imageView.image = image
+            self.imageBarStackView.arrangedSubviews[index].backgroundColor = ConstantColor.white
+        }
     }
 }
