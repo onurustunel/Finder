@@ -21,6 +21,13 @@
 		7727ECBF27501ECE00358027 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECBE27501ECE00358027 /* UserProfileView.swift */; };
 		7727ECC5275032F600358027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECC4275032F600358027 /* User.swift */; };
 		7727ECCA2750347300358027 /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECC92750347300358027 /* Extension+UIFont.swift */; };
+		772A5B76275B80D800BBE25F /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772A5B75275B80D800BBE25F /* SplashScreenViewController.swift */; };
+		772A5B7B275B814000BBE25F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772A5B7A275B814000BBE25F /* LoginViewController.swift */; };
+		772A5B80275B815A00BBE25F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772A5B7F275B815A00BBE25F /* SignUpViewController.swift */; };
+		772A5B85275B834A00BBE25F /* BackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772A5B84275B834A00BBE25F /* BackgroundGradient.swift */; };
+		772A5B8A275B839F00BBE25F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772A5B89275B839F00BBE25F /* BaseView.swift */; };
+		772A5B9B275B975F00BBE25F /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772A5B9A275B975F00BBE25F /* SplashView.swift */; };
+		772A5BA6275BC71E00BBE25F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772A5BA5275BC71E00BBE25F /* CustomTextField.swift */; };
 		7739BC602756B1250098EAB1 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7739BC5F2756B1250098EAB1 /* UserProfileViewModel.swift */; };
 		7739BC6B2756B5B70098EAB1 /* Advertise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7739BC6A2756B5B70098EAB1 /* Advertise.swift */; };
 		77E9D93C2758195300A4BF91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E9D93B2758195300A4BF91 /* Constants.swift */; };
@@ -64,6 +71,13 @@
 		7727ECBE27501ECE00358027 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		7727ECC4275032F600358027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7727ECC92750347300358027 /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
+		772A5B75275B80D800BBE25F /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		772A5B7A275B814000BBE25F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		772A5B7F275B815A00BBE25F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		772A5B84275B834A00BBE25F /* BackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradient.swift; sourceTree = "<group>"; };
+		772A5B89275B839F00BBE25F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		772A5B9A275B975F00BBE25F /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		772A5BA5275BC71E00BBE25F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		7739BC5F2756B1250098EAB1 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		7739BC6A2756B5B70098EAB1 /* Advertise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertise.swift; sourceTree = "<group>"; };
 		77E9D93B2758195300A4BF91 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -160,6 +174,7 @@
 		77195AB1274ECC9A006B30C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				772A5B74275B80AB00BBE25F /* Launch */,
 				77195A75274ECA56006B30C4 /* UserListViewController.swift */,
 			);
 			path = Controller;
@@ -179,9 +194,13 @@
 		7727ECA627500B1D00358027 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				772A5B99275B974200BBE25F /* SplashView */,
 				7727ECA727500B6000358027 /* UserListBottomStackView.swift */,
 				7727ECB127501A0B00358027 /* UserListTopStackView.swift */,
 				7727ECBE27501ECE00358027 /* UserProfileView.swift */,
+				772A5B84275B834A00BBE25F /* BackgroundGradient.swift */,
+				772A5B89275B839F00BBE25F /* BaseView.swift */,
+				772A5BA5275BC71E00BBE25F /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +212,24 @@
 				7739BC6A2756B5B70098EAB1 /* Advertise.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		772A5B74275B80AB00BBE25F /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				772A5B75275B80D800BBE25F /* SplashScreenViewController.swift */,
+				772A5B7A275B814000BBE25F /* LoginViewController.swift */,
+				772A5B7F275B815A00BBE25F /* SignUpViewController.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		772A5B99275B974200BBE25F /* SplashView */ = {
+			isa = PBXGroup;
+			children = (
+				772A5B9A275B975F00BBE25F /* SplashView.swift */,
+			);
+			path = SplashView;
 			sourceTree = "<group>";
 		};
 		7739BC5E2756B1070098EAB1 /* ViewModel */ = {
@@ -356,15 +393,22 @@
 			files = (
 				7727ECCA2750347300358027 /* Extension+UIFont.swift in Sources */,
 				7739BC6B2756B5B70098EAB1 /* Advertise.swift in Sources */,
+				772A5B85275B834A00BBE25F /* BackgroundGradient.swift in Sources */,
+				772A5B76275B80D800BBE25F /* SplashScreenViewController.swift in Sources */,
+				772A5BA6275BC71E00BBE25F /* CustomTextField.swift in Sources */,
+				772A5B7B275B814000BBE25F /* LoginViewController.swift in Sources */,
 				77195A76274ECA56006B30C4 /* UserListViewController.swift in Sources */,
 				7727ECAD27500E1C00358027 /* Animation+UIView.swift in Sources */,
 				77195A72274ECA56006B30C4 /* AppDelegate.swift in Sources */,
 				7727ECBF27501ECE00358027 /* UserProfileView.swift in Sources */,
 				7739BC602756B1250098EAB1 /* UserProfileViewModel.swift in Sources */,
 				77E9D93C2758195300A4BF91 /* Constants.swift in Sources */,
+				772A5B80275B815A00BBE25F /* SignUpViewController.swift in Sources */,
 				77195ABB274ED7F7006B30C4 /* Extension+UIView.swift in Sources */,
+				772A5B9B275B975F00BBE25F /* SplashView.swift in Sources */,
 				7727ECC5275032F600358027 /* User.swift in Sources */,
 				7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */,
+				772A5B8A275B839F00BBE25F /* BaseView.swift in Sources */,
 				7727ECB227501A0B00358027 /* UserListTopStackView.swift in Sources */,
 				77195A74274ECA56006B30C4 /* SceneDelegate.swift in Sources */,
 			);

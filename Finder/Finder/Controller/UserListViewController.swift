@@ -12,14 +12,14 @@ class UserListViewController: UIViewController {
     let bottomStackView = UserListBottomStackView()
     let profilesView = UIView()
     var users : [UserProfileViewModel] = {
-   let profiles = [User(username: "Gencay1", occupation: "Istanbul", age: 11, imageNames: ["gencay", "nike", "gencay"]),
-    User(username: "Gencay2", occupation: "Istanbul", age: 22, imageNames:  ["gencay"]),
-    User(username: "Gencay2", occupation: "Istanbul", age: 33, imageNames:  ["gencay", "nike"]),
-    Advertise(title: "November Sale", brandName: "Nike", imageName: "nike", infoLocation: .center)] as [UserProfileViewModelCreator]
+        let profiles = [User(username: "Gencay1", occupation: "Istanbul", age: 11, imageNames: ["gencay", "nike", "gencay"]),
+                        User(username: "Gencay2", occupation: "Istanbul", age: 22, imageNames: ["gencay"]),
+                        User(username: "Gencay2", occupation: "Istanbul", age: 33, imageNames: ["gencay", "nike"]),
+                        Advertise(title: "November Sale", brandName: "Nike", imageName: "nike", infoLocation: .center)] as [UserProfileViewModelCreator]
         let viewModels = profiles.map(({ $0.profileViewModelCreator() }))
         return viewModels
     }()
-            override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureProfiles()

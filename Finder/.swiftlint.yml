@@ -3,3 +3,9 @@ excluded:
     - Finder/Management/SceneDelegate.swift
 disabled_rules:
     - shorthand_operator
+line_length:
+  warning: 150
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true

@@ -8,7 +8,7 @@
 import UIKit
 
 class UserProfileView: UIView {
-    var userViewModel : UserProfileViewModel! {
+    var userViewModel: UserProfileViewModel! {
         didSet {
             updateUI()
             imageTopViewConfigure(count: userViewModel.imageNames.count)
@@ -60,7 +60,7 @@ class UserProfileView: UIView {
     }
     fileprivate func endPanGesture(_ panGesture: UIPanGestureRecognizer) {
         let translationDirection: CGFloat = panGesture.translation(in: nil).x > 0 ? 1 : -1
-        var hideProfile: Bool = abs(panGesture.translation(in: nil).x) > frameLimit
+        let hideProfile: Bool = abs(panGesture.translation(in: nil).x) > frameLimit
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .curveEaseInOut) {
             if hideProfile {
                 self.frame = CGRect(x: 1500 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
@@ -87,7 +87,7 @@ class UserProfileView: UIView {
         }
         imageBarStackView.arrangedSubviews.first?.backgroundColor = ConstantColor.white
         imageIndexObserve()
-    }    
+    }
     fileprivate func gradientLayerMaker() {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.3, 1.3]
