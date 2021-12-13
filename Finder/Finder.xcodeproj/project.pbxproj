@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,6 +34,8 @@
 		7739BC602756B1250098EAB1 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7739BC5F2756B1250098EAB1 /* UserProfileViewModel.swift */; };
 		7739BC6B2756B5B70098EAB1 /* Advertise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7739BC6A2756B5B70098EAB1 /* Advertise.swift */; };
 		774C8D962767C6FD00DFBA15 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C8D952767C6FD00DFBA15 /* RegisterViewModel.swift */; };
+		774C8DB82767E52800DFBA15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */; };
+		774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C8DBC2767F13A00DFBA15 /* Bindable.swift */; };
 		77E9D93C2758195300A4BF91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E9D93B2758195300A4BF91 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +88,8 @@
 		7739BC5F2756B1250098EAB1 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		7739BC6A2756B5B70098EAB1 /* Advertise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertise.swift; sourceTree = "<group>"; };
 		774C8D952767C6FD00DFBA15 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		774C8DBC2767F13A00DFBA15 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		77E9D93B2758195300A4BF91 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E5EDB71C70736CE641A3BBC /* Pods-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Finder/Pods-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		A53D60FBA197F87B1CAC0557 /* Pods-Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finder.release.xcconfig"; path = "Target Support Files/Pods-Finder/Pods-Finder.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				77195AA7274ECB03006B30C4 /* Management */,
 				77195A7A274ECA59006B30C4 /* Assets.xcassets */,
 				77195A7C274ECA59006B30C4 /* LaunchScreen.storyboard */,
+				774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */,
 				77195A7F274ECA59006B30C4 /* Info.plist */,
 			);
 			path = Finder;
@@ -205,6 +210,7 @@
 			children = (
 				772A5B74275B80AB00BBE25F /* Launch */,
 				77195A75274ECA56006B30C4 /* UserListViewController.swift */,
+				774C8DBC2767F13A00DFBA15 /* Bindable.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -280,7 +286,6 @@
 				BC4AAE2EA1E7AD150653BAF2 /* Pods-FinderTests.debug.xcconfig */,
 				C246F79C10687AF049AFF921 /* Pods-FinderTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -395,6 +400,7 @@
 			files = (
 				77195A7E274ECA59006B30C4 /* LaunchScreen.storyboard in Resources */,
 				77195A7B274ECA59006B30C4 /* Assets.xcassets in Resources */,
+				774C8DB82767E52800DFBA15 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +550,7 @@
 				7739BC6B2756B5B70098EAB1 /* Advertise.swift in Sources */,
 				772A5B85275B834A00BBE25F /* BackgroundGradient.swift in Sources */,
 				772A5B76275B80D800BBE25F /* SplashScreenViewController.swift in Sources */,
+				774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */,
 				772A5BA6275BC71E00BBE25F /* CustomTextField.swift in Sources */,
 				772A5B7B275B814000BBE25F /* LoginViewController.swift in Sources */,
 				77195A76274ECA56006B30C4 /* UserListViewController.swift in Sources */,

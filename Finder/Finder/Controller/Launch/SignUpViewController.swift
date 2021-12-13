@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
 
 class SignUpViewController: UIViewController {
     let splashView =  BackgroundGradient()
@@ -50,6 +52,7 @@ class SignUpViewController: UIViewController {
         button.titleLabel?.font = AppFont.appFontStyle(size: 20, style: .bold)
         button.setTitleColor(ConstantColor.splashGradientTop, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        button.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
         return button
     }()
     private lazy var signUpStackView: UIStackView = {
@@ -70,6 +73,7 @@ class SignUpViewController: UIViewController {
         splashView.frame = view.bounds
         view.addSubview(signUpStackView)
         stackViewConfigure()
+        selectImageGesture()
     }
     private func stackViewConfigure() {
         view.addSubview(signUpStackView)
@@ -91,14 +95,6 @@ class SignUpViewController: UIViewController {
         else if textField == textPassword {
             registerViewModel.password = textField.text
         }
-//        let dataIsValid = textName.text?.isEmpty == false && textEmailAddress.text?.isEmpty == false && textPassword.text?.isEmpty == false
-//        if dataIsValid {
-//            signUpButton.backgroundColor = ConstantColor.white
-//            signUpButton.isEnabled = true
-//        } else {
-//            signUpButton.backgroundColor = ConstantColor.disableRegisterButton
-//            signUpButton.isEnabled = false
-//        }
      }
     @objc private func captureKeyboardShow(notification: Notification) {
         guard let keyboardEndValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
@@ -106,6 +102,17 @@ class SignUpViewController: UIViewController {
         let bottomSpace = view.frame.height - (signUpStackView.frame.height + signUpStackView.frame.origin.y)
         let differenceSpace = keyboardEndFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -differenceSpace - 12)
+    }
+    @objc private func createAccount() {
+        self.hideShownKeyboard()
+        guard let emailAddress = textEmailAddress.text, let password = textPassword.text else { return }
+        Auth.auth().createUser(withEmail: emailAddress, password: password) { (result, error) in
+            if let error = error {
+                self.errorInformation(error: error)
+                return
+            }
+        }
+        
     }
     private func hideKeyboard() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideShownKeyboard)))
@@ -116,19 +123,50 @@ class SignUpViewController: UIViewController {
             self.view.transform = .identity
         }
     }
+    private func selectImageGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(choseImageFromGallery))
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tap)
+    }
+    @objc fileprivate func choseImageFromGallery() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
     fileprivate func registerViewModelObserve() {
-        registerViewModel.registerDataValidObserver = { (valid) in
-            if valid {
-                self.signUpButton.backgroundColor = ConstantColor.white
+        registerViewModel.bindableValidDataChecker.assignValue {[weak self] (result) in
+            guard let result = result else { return }            
+            if result {
+                self?.signUpButton.backgroundColor = ConstantColor.white
             }
             else {
-                self.signUpButton.backgroundColor = ConstantColor.disableRegisterButton
+                self?.signUpButton.backgroundColor = ConstantColor.disableRegisterButton
             }
-            self.signUpButton.isEnabled = valid
+            self?.signUpButton.isEnabled = result
         }
+        registerViewModel.bindableImage.assignValue { [weak self] (image) in
+            self?.profileImage.image = image           
+        }
+    }
+    fileprivate func errorInformation(error: Error) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "There is an error!"
+        hud.detailTextLabel.text = error.localizedDescription
+        hud.show(in: self.view)
+        hud.dismiss(afterDelay: 2, animated: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         NotificationCenter.default.removeObserver(self)
+    }
+}
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let selectedImage = info[.originalImage] as? UIImage
+        registerViewModel.bindableImage.value = selectedImage
+        dismiss(animated: true, completion: nil)
     }
 }
