@@ -9,6 +9,7 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     let splashView =  BackgroundGradient()
+    let registerViewModel = RegisterViewModel()
     lazy var profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -44,7 +45,7 @@ class SignUpViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle(  "Sign Up", for: .normal)
         button.isEnabled = false
-        button.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
+        button.backgroundColor = ConstantColor.disableRegisterButton
         button.layer.cornerRadius = 20
         button.titleLabel?.font = AppFont.appFontStyle(size: 20, style: .bold)
         button.setTitleColor(ConstantColor.splashGradientTop, for: .normal)
@@ -62,6 +63,7 @@ class SignUpViewController: UIViewController {
         configureView()
         notificationObserve()
         hideKeyboard()
+        registerViewModelObserve()
     }
     private func configureView() {
         view.addSubview(splashView)
@@ -80,11 +82,24 @@ class SignUpViewController: UIViewController {
 //        NotificationCenter.default.addObserver(self, selector: #selector(hideShownKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     @objc private func textChanged(textField: UITextField) {
-        if textField.text != "" {
-            signUpButton.backgroundColor = ConstantColor.white
-            signUpButton.isEnabled = true
+        if textField == textName {
+            registerViewModel.nameAndSurname = textField.text
         }
-    }
+        else if textField == textEmailAddress {
+            registerViewModel.emailAdress = textField.text
+        }
+        else if textField == textPassword {
+            registerViewModel.password = textField.text
+        }
+//        let dataIsValid = textName.text?.isEmpty == false && textEmailAddress.text?.isEmpty == false && textPassword.text?.isEmpty == false
+//        if dataIsValid {
+//            signUpButton.backgroundColor = ConstantColor.white
+//            signUpButton.isEnabled = true
+//        } else {
+//            signUpButton.backgroundColor = ConstantColor.disableRegisterButton
+//            signUpButton.isEnabled = false
+//        }
+     }
     @objc private func captureKeyboardShow(notification: Notification) {
         guard let keyboardEndValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardEndFrame = keyboardEndValue.cgRectValue
@@ -99,6 +114,17 @@ class SignUpViewController: UIViewController {
         view.endEditing(true)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveLinear) {
             self.view.transform = .identity
+        }
+    }
+    fileprivate func registerViewModelObserve() {
+        registerViewModel.registerDataValidObserver = { (valid) in
+            if valid {
+                self.signUpButton.backgroundColor = ConstantColor.white
+            }
+            else {
+                self.signUpButton.backgroundColor = ConstantColor.disableRegisterButton
+            }
+            self.signUpButton.isEnabled = valid
         }
     }
     override func viewWillDisappear(_ animated: Bool) {

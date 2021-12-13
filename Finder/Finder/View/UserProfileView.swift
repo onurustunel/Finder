@@ -37,7 +37,7 @@ class UserProfileView: UIView {
         addGestureRecognizer(panGesture)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changePicture))
         addGestureRecognizer(tapGesture)
-    }    
+    }
     @objc func profilePanGesture(panGesture: UIPanGestureRecognizer) {
         switch panGesture.state {
         case .began:

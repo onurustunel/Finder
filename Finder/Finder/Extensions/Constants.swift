@@ -13,4 +13,5 @@ struct ConstantColor {
     static let splashGradientBottom = UIColor(red: 27/255, green: 27/255, blue: 27/255, alpha: 1)
     static let registerTextFieldBackground = UIColor(red: 39/255, green: 42/255, blue: 45/255, alpha: 1)
     static let registerTextFieldText = UIColor(red: 114/255, green: 114/255, blue: 114/255, alpha: 1)
+    static let disableRegisterButton = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 0.9)
 }
