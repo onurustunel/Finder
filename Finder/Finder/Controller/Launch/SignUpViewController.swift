@@ -145,7 +145,7 @@ class SignUpViewController: UIViewController {
             self?.signUpButton.isEnabled = result
         }
         registerViewModel.bindableImage.assignValue { [weak self] (image) in
-            self?.profileImage.image = image           
+            self?.profileImage.image = image
         }
     }
     fileprivate func errorInformation(error: Error) {

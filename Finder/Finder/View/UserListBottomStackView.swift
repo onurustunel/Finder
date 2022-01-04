@@ -41,7 +41,7 @@ class UserListBottomStackView: UIStackView {
         bottomButtom.forEach { (bottom) in
             addArrangedSubview(bottom)
         }
-    }    
+    }
     required init(coder: NSCoder) {
         fatalError()
     }

@@ -27,5 +27,5 @@ class RegisterViewModel {
     fileprivate func dataIsValid() {
         let dataValid = emailAdress?.isEmpty == false && nameAndSurname?.isEmpty == false && password?.isEmpty == false
         bindableValidDataChecker.value = dataValid
-    }    
+    }
 }

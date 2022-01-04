@@ -39,5 +39,3 @@ extension SplashScreenViewController {
         gradientBackground.fillSuperView()
     }
 }
-
-

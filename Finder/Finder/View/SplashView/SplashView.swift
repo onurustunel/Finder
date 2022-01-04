@@ -79,5 +79,5 @@ class SplashView: BaseView {
         view.forEach { (view) in
             view.animationFadein(startingAlpha: 0.3, duration: 1, curve: .curveEaseInOut)
         }
-    }    
-}
+    }
+    }
