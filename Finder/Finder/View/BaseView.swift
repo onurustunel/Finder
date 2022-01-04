@@ -11,7 +11,7 @@ class BaseView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
-        self.updateUI()        
+        self.updateUI()
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

@@ -36,6 +36,7 @@
 		774C8D962767C6FD00DFBA15 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C8D952767C6FD00DFBA15 /* RegisterViewModel.swift */; };
 		774C8DB82767E52800DFBA15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */; };
 		774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C8DBC2767F13A00DFBA15 /* Bindable.swift */; };
+		77D820812784DF3400613E93 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D820802784DF3400613E93 /* Extension+UIViewController.swift */; };
 		77E9D93C2758195300A4BF91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E9D93B2758195300A4BF91 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		774C8D952767C6FD00DFBA15 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		774C8DBC2767F13A00DFBA15 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		77D820802784DF3400613E93 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		77E9D93B2758195300A4BF91 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E5EDB71C70736CE641A3BBC /* Pods-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Finder/Pods-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		A53D60FBA197F87B1CAC0557 /* Pods-Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finder.release.xcconfig"; path = "Target Support Files/Pods-Finder/Pods-Finder.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,7 +212,6 @@
 			children = (
 				772A5B74275B80AB00BBE25F /* Launch */,
 				77195A75274ECA56006B30C4 /* UserListViewController.swift */,
-				774C8DBC2767F13A00DFBA15 /* Bindable.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -222,6 +223,7 @@
 				7727ECAC27500E1C00358027 /* Animation+UIView.swift */,
 				7727ECC92750347300358027 /* Extension+UIFont.swift */,
 				77E9D93B2758195300A4BF91 /* Constants.swift */,
+				77D820802784DF3400613E93 /* Extension+UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -245,6 +247,7 @@
 			children = (
 				7727ECC4275032F600358027 /* User.swift */,
 				7739BC6A2756B5B70098EAB1 /* Advertise.swift */,
+				774C8DBC2767F13A00DFBA15 /* Bindable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */,
 				772A5B8A275B839F00BBE25F /* BaseView.swift in Sources */,
 				7727ECB227501A0B00358027 /* UserListTopStackView.swift in Sources */,
+				77D820812784DF3400613E93 /* Extension+UIViewController.swift in Sources */,
 				77195A74274ECA56006B30C4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

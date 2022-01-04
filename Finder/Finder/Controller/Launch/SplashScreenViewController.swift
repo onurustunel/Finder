@@ -22,16 +22,10 @@ class SplashScreenViewController: UIViewController {
         splashView.signinButton.addTarget(self, action: #selector(goToSignIn), for: .touchUpInside)
     }
     @objc func goToRegister() {
-        let viewController = SignUpViewController()
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true, completion: nil)
+        presentNextViewController(nextController: SignUpViewController())
     }
     @objc func goToSignIn() {
-        let viewController = LoginViewController()
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true, completion: nil)
+        presentNextViewController(nextController: LoginViewController())
     }
 }
 extension SplashScreenViewController {
@@ -45,3 +39,5 @@ extension SplashScreenViewController {
         gradientBackground.fillSuperView()
     }
 }
+
+
