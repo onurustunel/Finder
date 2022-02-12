@@ -8,14 +8,14 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    let splashView =  BackgroundGradient()
+    let containerView =  BackgroundGradient()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
     }
     private func configureView() {
-        view.addSubview(splashView)
-        splashView.frame = view.bounds
+        view.addSubview(containerView)
+        containerView.frame = view.bounds
     }
 
 }

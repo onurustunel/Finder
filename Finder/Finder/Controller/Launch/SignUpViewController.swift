@@ -10,7 +10,7 @@ import Firebase
 import JGProgressHUD
 
 class SignUpViewController: UIViewController {
-    let splashView =  BackgroundGradient()
+    let containerView =  BackgroundGradient()
     let registerViewModel = RegisterViewModel()
     lazy var profileImage: UIImageView = {
         let image = UIImageView()
@@ -69,8 +69,8 @@ class SignUpViewController: UIViewController {
         registerViewModelObserve()
     }
     private func configureView() {
-        view.addSubview(splashView)
-        splashView.frame = view.bounds
+        view.addSubview(containerView)
+        containerView.frame = view.bounds
         view.addSubview(signUpStackView)
         stackViewConfigure()
         selectImageGesture()
@@ -112,7 +112,6 @@ class SignUpViewController: UIViewController {
                 return
             }
         }
-        
     }
     private func hideKeyboard() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideShownKeyboard)))

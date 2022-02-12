@@ -14,13 +14,12 @@ class CustomTextField: UITextField {
         view.backgroundColor = ConstantColor.white
         return view
     }()
-    init(padding: CGFloat) {
+    init(padding: CGFloat, addSeperator: Bool = true) {
         self.padding = padding
         super.init(frame: .zero)
         configureCustomTextField()
-        addSubview(seperatorView)
-        seperatorView.anchor(top: nil, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor,
-                             padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 0.5))
+        if addSeperator { self.addSeperatorView() }
+       
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,5 +36,10 @@ class CustomTextField: UITextField {
     }
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: padding, dy: 0)
+    }
+    private func addSeperatorView() {
+        addSubview(seperatorView)
+        seperatorView.anchor(top: nil, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor,
+                             padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 0.5))
     }
 }

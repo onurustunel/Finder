@@ -28,15 +28,19 @@ class UserProfileView: UIView {
         return label
     }()
     private let frameLimit: CGFloat = 120
+    fileprivate func addGestures() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(profilePanGesture))
+        addGestureRecognizer(panGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changePicture))
+        addGestureRecognizer(tapGesture)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 10
         clipsToBounds = true
         configureUI()
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(profilePanGesture))
-        addGestureRecognizer(panGesture)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changePicture))
-        addGestureRecognizer(tapGesture)
+        addGestures()
     }
     @objc func profilePanGesture(panGesture: UIPanGestureRecognizer) {
         switch panGesture.state {
@@ -52,7 +56,7 @@ class UserProfileView: UIView {
             break
         }
     }
-    var imageIndex = 0
+
     @objc func changePicture(tapGesture: UITapGestureRecognizer) {
         let location = tapGesture.location(in: nil)
         let nextPhoto = location.x > frame.width / 2 ? true : false
@@ -123,12 +127,12 @@ class UserProfileView: UIView {
         usernameLabel.textAlignment = userViewModel.infoLocation
     }
     private func imageIndexObserve() {
-        userViewModel.imageIndexObserver = { (index, image) in
-            self.imageBarStackView.arrangedSubviews.forEach { (subView) in
+        userViewModel.imageIndexObserver = { [weak self] (index, image) in
+            self?.imageBarStackView.arrangedSubviews.forEach { (subView) in
                 subView.backgroundColor = ConstantColor.gray
             }
-            self.imageView.image = image
-            self.imageBarStackView.arrangedSubviews[index].backgroundColor = ConstantColor.white
+            self?.imageView.image = image
+            self?.imageBarStackView.arrangedSubviews[index].backgroundColor = ConstantColor.white
         }
     }
 }
