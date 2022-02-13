@@ -65,8 +65,8 @@ class RegisterViewModel {
     }
     fileprivate func createUserInfo (imageUrl: String, completion: @escaping (Error?) -> ()) {
         let userID = Auth.auth().currentUser?.uid ?? ""
-        let userDictionary = ["NameSurname": nameAndSurname ?? "",
-                              "ImageUrl":imageUrl,
+        let userDictionary = ["nameSurname": nameAndSurname ?? "",
+                              "imageUrl": imageUrl,
                               "userID": userID]
         Firestore.firestore().collection("UserList").document(userID).setData(userDictionary) { (error) in
             if let error = error {

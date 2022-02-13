@@ -18,6 +18,8 @@
 		77195A89274ECA5A006B30C4 /* FinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195A88274ECA5A006B30C4 /* FinderTests.swift */; };
 		77195A94274ECA5A006B30C4 /* FinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195A93274ECA5A006B30C4 /* FinderUITests.swift */; };
 		77195ABB274ED7F7006B30C4 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195ABA274ED7F7006B30C4 /* Extension+UIView.swift */; };
+		771D986027B976DC000240F3 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771D985F27B976DC000240F3 /* SettingsTableViewController.swift */; };
+		771D986527B98A52000240F3 /* Extension+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771D986427B98A52000240F3 /* Extension+UIKit.swift */; };
 		7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECA727500B6000358027 /* UserListBottomStackView.swift */; };
 		7727ECAD27500E1C00358027 /* Animation+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECAC27500E1C00358027 /* Animation+UIView.swift */; };
 		7727ECB227501A0B00358027 /* UserListTopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7727ECB127501A0B00358027 /* UserListTopStackView.swift */; };
@@ -73,6 +75,8 @@
 		77195A93274ECA5A006B30C4 /* FinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderUITests.swift; sourceTree = "<group>"; };
 		77195A95274ECA5A006B30C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77195ABA274ED7F7006B30C4 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		771D985F27B976DC000240F3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		771D986427B98A52000240F3 /* Extension+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIKit.swift"; sourceTree = "<group>"; };
 		7727ECA727500B6000358027 /* UserListBottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListBottomStackView.swift; sourceTree = "<group>"; };
 		7727ECAC27500E1C00358027 /* Animation+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+UIView.swift"; sourceTree = "<group>"; };
 		7727ECB127501A0B00358027 /* UserListTopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTopStackView.swift; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 			children = (
 				772A5B74275B80AB00BBE25F /* Launch */,
 				77195A75274ECA56006B30C4 /* UserListViewController.swift */,
+				771D985F27B976DC000240F3 /* SettingsTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				7727ECC92750347300358027 /* Extension+UIFont.swift */,
 				77E9D93B2758195300A4BF91 /* Constants.swift */,
 				77D820802784DF3400613E93 /* Extension+UIViewController.swift */,
+				771D986427B98A52000240F3 /* Extension+UIKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -553,6 +559,7 @@
 				7739BC6B2756B5B70098EAB1 /* Advertise.swift in Sources */,
 				772A5B85275B834A00BBE25F /* BackgroundGradient.swift in Sources */,
 				772A5B76275B80D800BBE25F /* SplashScreenViewController.swift in Sources */,
+				771D986527B98A52000240F3 /* Extension+UIKit.swift in Sources */,
 				774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */,
 				772A5BA6275BC71E00BBE25F /* CustomTextField.swift in Sources */,
 				772A5B7B275B814000BBE25F /* LoginViewController.swift in Sources */,
@@ -569,6 +576,7 @@
 				774C8D962767C6FD00DFBA15 /* RegisterViewModel.swift in Sources */,
 				7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */,
 				772A5B8A275B839F00BBE25F /* BaseView.swift in Sources */,
+				771D986027B976DC000240F3 /* SettingsTableViewController.swift in Sources */,
 				7727ECB227501A0B00358027 /* UserListTopStackView.swift in Sources */,
 				77D820812784DF3400613E93 /* Extension+UIViewController.swift in Sources */,
 				77195A74274ECA56006B30C4 /* SceneDelegate.swift in Sources */,

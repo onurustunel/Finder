@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserProfileView: UIView {
     var userViewModel: UserProfileViewModel! {
@@ -122,16 +123,20 @@ class UserProfileView: UIView {
     }
     private func updateUI() {
         let imageName = userViewModel.imageNames.first ?? ""
-        imageView.image = UIImage(named: imageName)
+        if let imageUrl = URL(string: imageName) {
+            self.imageView.sd_setImage(with: imageUrl)
+        }        
         usernameLabel.attributedText = userViewModel.attributedString
         usernameLabel.textAlignment = userViewModel.infoLocation
     }
     private func imageIndexObserve() {
-        userViewModel.imageIndexObserver = { [weak self] (index, image) in
+        userViewModel.imageIndexObserver = { [weak self] (index, imageUrl) in
             self?.imageBarStackView.arrangedSubviews.forEach { (subView) in
                 subView.backgroundColor = ConstantColor.gray
             }
-            self?.imageView.image = image
+            if let imageUrl = URL(string: imageUrl ?? "") {
+                self?.imageView.sd_setImage(with: imageUrl)
+            }
             self?.imageBarStackView.arrangedSubviews[index].backgroundColor = ConstantColor.white
         }
     }

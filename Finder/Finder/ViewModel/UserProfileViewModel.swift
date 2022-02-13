@@ -21,7 +21,7 @@ class UserProfileViewModel {
             updateImage()
         }
     }
-    var imageIndexObserver : ( (Int, UIImage) -> () )?
+    var imageIndexObserver : ( (Int, String?) -> () )?
     func showNextImage() {
         imageIndex = imageIndex + 1 >= imageNames.count ? 0 : imageIndex + 1
     }
@@ -29,9 +29,9 @@ class UserProfileViewModel {
         imageIndex = imageIndex - 1 < 0 ? imageNames.count - 1 : imageIndex - 1
     }
     private func updateImage() {
-        let imageName = imageNames[imageIndex]
-        let imageProfile = UIImage(named: imageName)
-        imageIndexObserver?(imageIndex, imageProfile ?? UIImage())
+        let imageUrl = imageNames[imageIndex]
+   
+        imageIndexObserver?(imageIndex, imageUrl)
     }
 }
 
