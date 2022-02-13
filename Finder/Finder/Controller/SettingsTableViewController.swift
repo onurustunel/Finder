@@ -13,10 +13,7 @@ class SettingsTableViewController: UITableViewController {
     lazy var thirdImageButton = UIButton.buttonMaker(title: "Upload Image", selector: #selector(chooseImage), controller: self)
     override func viewDidLoad() {
         super.viewDidLoad()
-       setNavigationBar()
         configureUI()
-       
-      
     }
 
     private func setNavigationBar() {
@@ -29,12 +26,12 @@ class SettingsTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     @objc private func logoutPressed() {
-    
+    //NOTE: User will logout here...
     }
-    
+
     @objc func chooseImage(button: UIButton) {
         let imagePicker = CustomImagePickerController()
-        imagePicker.chooseButtonImage = button
+        imagePicker.changingButton = button
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
@@ -44,8 +41,9 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 300
     }
-    private func configureUI(){
-        tableView.tableHeaderView = UIView()
+    private func configureUI() {
+        setNavigationBar()
+        tableView.tableFooterView = UIView()
     }
     private func headerView() -> UIView {
         let headerView = UIView()
@@ -66,10 +64,10 @@ class SettingsTableViewController: UITableViewController {
 }
 extension SettingsTableViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let chosenImage = info[.originalImage] as? UIImage
-        let chooseButtonImage = (picker as? CustomImagePickerController)?.chooseButtonImage
-        chooseButtonImage?.setImage(chosenImage?.withRenderingMode(.alwaysOriginal), for: .normal)
-        chooseButtonImage?.imageView?.contentMode = .scaleAspectFill
+        let selectedImage = info[.originalImage] as? UIImage
+        let chosenButton = (picker as? CustomImagePickerController)?.changingButton
+        chosenButton?.setImage(selectedImage?.withRenderingMode(.alwaysOriginal), for: .normal)
+        chosenButton?.imageView?.contentMode = .scaleAspectFill
         dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -78,5 +76,5 @@ extension SettingsTableViewController: UIImagePickerControllerDelegate & UINavig
 }
 
 class CustomImagePickerController: UIImagePickerController {
-    var chooseButtonImage: UIButton?
+    var changingButton: UIButton?
 }

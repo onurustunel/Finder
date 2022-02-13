@@ -45,7 +45,7 @@ class SignUpViewController: UIViewController {
     }()
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(  "Sign Up", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.isEnabled = false
         button.backgroundColor = ConstantColor.disableRegisterButton
         button.layer.cornerRadius = 20
