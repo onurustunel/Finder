@@ -61,6 +61,7 @@ class SignUpViewController: UIViewController {
         view.spacing = 24
         return view
     }()
+    let hud = JGProgressHUD(style: .dark)
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -83,19 +84,17 @@ class SignUpViewController: UIViewController {
     }
     private func notificationObserve() {
         NotificationCenter.default.addObserver(self, selector: #selector(captureKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(hideShownKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(hideShownKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     @objc private func textChanged(textField: UITextField) {
         if textField == textName {
             registerViewModel.nameAndSurname = textField.text
-        }
-        else if textField == textEmailAddress {
+        } else if textField == textEmailAddress {
             registerViewModel.emailAdress = textField.text
-        }
-        else if textField == textPassword {
+        } else if textField == textPassword {
             registerViewModel.password = textField.text
         }
-     }
+    }
     @objc private func captureKeyboardShow(notification: Notification) {
         guard let keyboardEndValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardEndFrame = keyboardEndValue.cgRectValue
@@ -104,9 +103,8 @@ class SignUpViewController: UIViewController {
         self.view.transform = CGAffineTransform(translationX: 0, y: -differenceSpace - 12)
     }
     @objc private func createAccount() {
-        self.hideShownKeyboard()
-        guard let emailAddress = textEmailAddress.text, let password = textPassword.text else { return }
-        Auth.auth().createUser(withEmail: emailAddress, password: password) { (result, error) in
+        self.hideKeyboard()
+        registerViewModel.createNewAccount { (error) in
             if let error = error {
                 self.errorInformation(error: error)
                 return
@@ -134,17 +132,24 @@ class SignUpViewController: UIViewController {
     }
     fileprivate func registerViewModelObserve() {
         registerViewModel.bindableValidDataChecker.assignValue {[weak self] (result) in
-            guard let result = result else { return }            
+            guard let result = result else { return }
             if result {
                 self?.signUpButton.backgroundColor = ConstantColor.white
-            }
-            else {
+            } else {
                 self?.signUpButton.backgroundColor = ConstantColor.disableRegisterButton
             }
             self?.signUpButton.isEnabled = result
         }
         registerViewModel.bindableImage.assignValue { [weak self] (image) in
             self?.profileImage.image = image
+        }
+        registerViewModel.bindableSignUP.assignValue { (registering) in
+            if registering == true {
+                self.hud.textLabel.text = "Your Account is creating..."
+                self.hud.show(in: self.view)
+            } else {
+                self.hud.dismiss()
+            }
         }
     }
     fileprivate func errorInformation(error: Error) {
