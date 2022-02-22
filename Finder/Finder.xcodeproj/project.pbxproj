@@ -39,6 +39,8 @@
 		774C8DB82767E52800DFBA15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */; };
 		774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C8DBC2767F13A00DFBA15 /* Bindable.swift */; };
 		77D820812784DF3400613E93 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D820802784DF3400613E93 /* Extension+UIViewController.swift */; };
+		77E11DCE27C57AD000D4C8F6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E11DCD27C57AD000D4C8F6 /* SettingsTableViewCell.swift */; };
+		77E11DD627C58BB800D4C8F6 /* HeaderTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E11DD527C58BB800D4C8F6 /* HeaderTitleLabel.swift */; };
 		77E9D93C2758195300A4BF91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E9D93B2758195300A4BF91 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,8 @@
 		774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		774C8DBC2767F13A00DFBA15 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		77D820802784DF3400613E93 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		77E11DCD27C57AD000D4C8F6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		77E11DD527C58BB800D4C8F6 /* HeaderTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitleLabel.swift; sourceTree = "<group>"; };
 		77E9D93B2758195300A4BF91 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E5EDB71C70736CE641A3BBC /* Pods-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Finder/Pods-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		A53D60FBA197F87B1CAC0557 /* Pods-Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finder.release.xcconfig"; path = "Target Support Files/Pods-Finder/Pods-Finder.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 		77195AB1274ECC9A006B30C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				77E11DCC27C57AAB00D4C8F6 /* SettingsTableViewCell */,
 				772A5B74275B80AB00BBE25F /* Launch */,
 				77195A75274ECA56006B30C4 /* UserListViewController.swift */,
 				771D985F27B976DC000240F3 /* SettingsTableViewController.swift */,
@@ -244,6 +249,7 @@
 				772A5B84275B834A00BBE25F /* BackgroundGradient.swift */,
 				772A5B89275B839F00BBE25F /* BaseView.swift */,
 				772A5BA5275BC71E00BBE25F /* CustomTextField.swift */,
+				77E11DD527C58BB800D4C8F6 /* HeaderTitleLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +289,14 @@
 				774C8D952767C6FD00DFBA15 /* RegisterViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		77E11DCC27C57AAB00D4C8F6 /* SettingsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				77E11DCD27C57AD000D4C8F6 /* SettingsTableViewCell.swift */,
+			);
+			path = SettingsTableViewCell;
 			sourceTree = "<group>";
 		};
 		D2420ABF3B7D32C71A9C5BB6 /* Pods */ = {
@@ -558,6 +572,7 @@
 				7727ECCA2750347300358027 /* Extension+UIFont.swift in Sources */,
 				7739BC6B2756B5B70098EAB1 /* Advertise.swift in Sources */,
 				772A5B85275B834A00BBE25F /* BackgroundGradient.swift in Sources */,
+				77E11DD627C58BB800D4C8F6 /* HeaderTitleLabel.swift in Sources */,
 				772A5B76275B80D800BBE25F /* SplashScreenViewController.swift in Sources */,
 				771D986527B98A52000240F3 /* Extension+UIKit.swift in Sources */,
 				774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */,
@@ -573,6 +588,7 @@
 				77195ABB274ED7F7006B30C4 /* Extension+UIView.swift in Sources */,
 				772A5B9B275B975F00BBE25F /* SplashView.swift in Sources */,
 				7727ECC5275032F600358027 /* User.swift in Sources */,
+				77E11DCE27C57AD000D4C8F6 /* SettingsTableViewCell.swift in Sources */,
 				774C8D962767C6FD00DFBA15 /* RegisterViewModel.swift in Sources */,
 				7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */,
 				772A5B8A275B839F00BBE25F /* BaseView.swift in Sources */,
