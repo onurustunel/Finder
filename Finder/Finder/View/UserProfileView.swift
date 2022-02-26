@@ -19,7 +19,6 @@ class UserProfileView: UIView {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.image = UIImage(named: "gencay")
         return image
     }()
     fileprivate let gradientLayer = CAGradientLayer()

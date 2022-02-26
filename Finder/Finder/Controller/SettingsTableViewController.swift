@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
+import SDWebImage
 
 class SettingsTableViewController: UITableViewController {
+    
     lazy var firstImageButton = UIButton.buttonMaker(title: "Upload Image", selector: #selector(chooseImage), controller: self)
     lazy var secondImageButton = UIButton.buttonMaker(title: "Upload Image", selector: #selector(chooseImage), controller: self)
     lazy var thirdImageButton = UIButton.buttonMaker(title: "Upload Image", selector: #selector(chooseImage), controller: self)
+    
     lazy var header: UIView = {
         let headerView = UIView()
         headerView.addSubview(firstImageButton)
@@ -27,21 +32,71 @@ class SettingsTableViewController: UITableViewController {
         stackView.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.45).isActive = true
         return headerView
     }()
+    var currentUser: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        //        fastLogin()
+        getUserData()
     }
     private func setNavigationBar() {
         navigationItem.title = "Settings"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem =  UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutPressed))
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutPressed)),
+            UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(updatePersonalInfo))]
+    }
+    
+    private func getUserData() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("\(FirebasePath.userListPath)").document(uid).getDocument { (snapshot, error) in
+            if let error = error {
+                print("User data is not reachable...")
+                return
+            }
+            guard let userInfo = snapshot?.data() else { return }
+            self.currentUser = User(userData: userInfo)
+            self.getProfileImages()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func updatePersonalData() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let updateData: [String : Any] = [
+            "userID": uid,
+            "age": currentUser?.age,
+            "nameSurname": currentUser?.username ?? "",
+            "occupation": currentUser?.occupation ?? "",
+            "imageUrl": currentUser?.imageUrl ?? ""
+        ]
+        Firestore.firestore().collection("\(FirebasePath.userListPath)").document(uid).setData(updateData)
+    }
+    
+    fileprivate func getProfileImages() {
+        guard let profileImageUrl = currentUser?.imageUrl,
+              let url = URL(string: "\(profileImageUrl)")  else { return }
+        SDWebImageManager.shared().loadImage(with: url, options: .continueInBackground, progress: nil){image,_,_,_,_,_ in
+            self.firstImageButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    }
+    
+    private func fastLogin() {
+        Auth.auth().signIn(withEmail: "ahmet@gmail.com", password: "******", completion: nil)
+        print("test login")
     }
     @objc private func cancelPressed() {
         dismiss(animated: true, completion: nil)
     }
     @objc private func logoutPressed() {
         //NOTE: User will logout here...
+    }
+    @objc func updatePersonalInfo() {
+        updatePersonalData()
     }
     @objc func chooseImage(button: UIButton) {
         let imagePicker = CustomImagePickerController()
@@ -69,16 +124,17 @@ class SettingsTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell {
-            cell.textfield.placeholder = SettingsConstant.infoPlaceHolders[indexPath.section - 1]
+            cell.updateCell(currentUser: currentUser, section: indexPath.section)
+            cell.delegate = self
             return cell
         } else {
             return UITableViewCell()
-        }        
+        }
     }
     private func configureUI() {
         setNavigationBar()
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
-        tableView.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 0.2514982877)
+        tableView.backgroundColor = #colorLiteral(red: 0.09608978426, green: 0.09608978426, blue: 0.09608978426, alpha: 1)
         tableView.keyboardDismissMode = .interactive
         tableView.tableFooterView = UIView()
     }
@@ -95,13 +151,25 @@ extension SettingsTableViewController: UIImagePickerControllerDelegate & UINavig
         dismiss(animated: true, completion: nil)
     }
 }
-
 private class CustomImagePickerController: UIImagePickerController {
     var changingButton: UIButton?
 }
-
 private struct SettingsConstant {
     static let headerTitles: [String] = ["Name - Surname","Age","Occupation","About"]
-    static let infoPlaceHolders: [String] = ["Name and Surname...","Your Age...",
-                                             "Your Occupation...","About You..."]
+}
+extension SettingsTableViewController: ITextField {
+    func nameTextField(textField: UITextField) {
+        currentUser?.username = textField.text ?? ""
+    }
+    func ageTextField(textField: UITextField) {
+        if let age = Int(textField.text ?? "-1") {
+            currentUser?.age = age
+        }
+    }
+    func occupationTextField(textField: UITextField) {
+        currentUser?.occupation = textField.text ?? ""
+    }
+    func aboutTextField(textField: UITextField) {
+        //NOTE: About will be added later...
+    }
 }

@@ -23,7 +23,7 @@ class UserListViewController: UIViewController {
     }
     
    private func getUserData() {
-    let query = Firestore.firestore().collection("UserList").order(by: "userID").start(at: [lastUser?.userID ?? ""]).limit(to: 2)
+    let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").order(by: "\(FirebasePath.userID)").start(at: [lastUser?.userID ?? ""]).limit(to: 2)
     query.getDocuments { (snapshot, error) in
         if let error = error {
             return
