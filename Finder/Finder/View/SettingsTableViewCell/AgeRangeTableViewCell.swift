@@ -84,6 +84,6 @@ class AgeRangeTableViewCell: UITableViewCell {
         minimumAgeSlider.value = Float(user?.minimumAge ?? 18)
         minimumAge.text = "Min \(Int(minimumAgeSlider.value))"
         maximumAgeSlider.value = Float(user?.maximumAge ?? 90)
-        maximumAge.text = "Min \(Int(maximumAgeSlider.value))"
+        maximumAge.text = "Max \(Int(maximumAgeSlider.value))"
     }
 }
