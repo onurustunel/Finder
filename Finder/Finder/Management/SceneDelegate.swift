@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
         if alreadyLoggedIn {
-            window?.rootViewController = UINavigationController(rootViewController: UserListViewController())
-//            window?.rootViewController = UINavigationController(rootViewController: SettingsTableViewController())
+//            window?.rootViewController = UINavigationController(rootViewController: UserListViewController())
+            window?.rootViewController = UINavigationController(rootViewController: SettingsTableViewController())
         } else {
             window?.rootViewController = SplashScreenViewController()
         }

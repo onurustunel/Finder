@@ -12,14 +12,22 @@ struct User: UserProfileViewModelCreator {
     var occupation: String?
     var age: Int?
 //    let imageNames: [String]
-    var imageUrl: String
+    var firstImageUrl: String?
+    var secondImageUrl: String?
+    var thirdImageUrl: String?
+    var minimumAge: Int?
+    var maximumAge: Int?
+    
     internal init(userData: [String : Any]) {
         self.userID = userData["userID"] as? String ?? ""
         self.username = userData["nameSurname"] as? String ?? ""
-        self.occupation = ""
         self.age = userData["age"] as? Int
         self.occupation = userData["occupation"] as? String
-        self.imageUrl = userData["imageUrl"] as? String ?? ""
+        self.firstImageUrl = userData["imageUrl"] as? String
+        self.secondImageUrl = userData["secondImageUrl"] as? String
+        self.thirdImageUrl = userData["thirdImageUrl"] as? String
+        self.minimumAge = userData["minimumAge"] as? Int
+        self.maximumAge = userData["maximumAge"] as? Int
     }  
     func profileViewModelCreator() -> UserProfileViewModel {
         let attributedText = NSMutableAttributedString(string: "\(username ?? ""),", attributes: [.font: AppFont.appFontStyle(size: 22, style: .bold)])
@@ -27,6 +35,10 @@ struct User: UserProfileViewModelCreator {
         let currentOccupation = occupation != nil ? "\(occupation!)" : ""
         attributedText.append(NSAttributedString(string: " \(currentAge)", attributes: [.font: AppFont.appFontStyle(size: 18, style: .bold)]))
         attributedText.append(NSAttributedString(string: "\n🍻\(currentOccupation)", attributes: [.font: AppFont.appFontStyle(size: 16, style: .bold)]))
-        return UserProfileViewModel(attributedString: attributedText, imageNames: [imageUrl], infoLocation: .left)
+        var imageURL = [String]()
+        if let url = firstImageUrl, !url.isEmpty { imageURL.append(url) }
+        if let url = secondImageUrl, !url.isEmpty { imageURL.append(url) }
+        if let url = thirdImageUrl, !url.isEmpty { imageURL.append(url) }
+        return UserProfileViewModel(attributedString: attributedText, imageNames: imageURL, infoLocation: .left)
     }
 }

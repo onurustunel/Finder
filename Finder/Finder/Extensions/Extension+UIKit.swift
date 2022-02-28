@@ -14,6 +14,7 @@ extension UIButton {
         button.backgroundColor = .orange
         button.setTitle("\(title)", for: .normal)
         button.addTarget(controller, action: selector, for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFill
         return button
     }
 }

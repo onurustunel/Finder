@@ -9,4 +9,5 @@ import Foundation
 struct FirebasePath {
     static let userListPath = "UserList"
     static let userID = "userID"
+    static let imagesPath = "Images/"
 }
