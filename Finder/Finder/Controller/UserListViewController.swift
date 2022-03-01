@@ -13,7 +13,7 @@ class UserListViewController: UIViewController {
     let bottomStackView = UserListBottomStackView()
     let profilesView = UIView()
     var usersProfileViewModel = [UserProfileViewModel]()
-    var lastUser: User?
+    var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,26 +27,28 @@ class UserListViewController: UIViewController {
                 print(error.localizedDescription)
                 return
             }
-            self.lastUser = user
+            self.currentUser = user
             self.getUserData()
         }
     }
-
-   private func getUserData() {
-    let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").whereField("age", isGreaterThanOrEqualTo: lastUser?.minimumAge ?? 18).whereField("age", isLessThanOrEqualTo: lastUser?.maximumAge ?? 90)
-    query.getDocuments { (snapshot, error) in
-        if let error = error { return }
-        snapshot?.documents.forEach({ (snapshot) in
-            let userData = snapshot.data()
-            let user = User(userData: userData)
-            self.usersProfileViewModel.append(user.profileViewModelCreator())
-            self.lastUser = user
-            self.createProfileFromUser(user: user)
-        })
-    }
+    
+    private func getUserData() {
+        let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").whereField("age", isGreaterThanOrEqualTo: currentUser?.minimumAge ?? 18).whereField("age", isLessThanOrEqualTo: currentUser?.maximumAge ?? 90)
+        query.getDocuments { (snapshot, error) in
+            if let error = error { return }
+            snapshot?.documents.forEach({ (snapshot) in
+                let userData = snapshot.data()
+                let user = User(userData: userData)
+                self.usersProfileViewModel.append(user.profileViewModelCreator())
+                if user.userID != self.currentUser?.userID {
+                    self.createProfileFromUser(user: user)
+                }
+            })
+        }
     }
     fileprivate func createProfileFromUser(user: User) {
         let profileView = UserProfileView(frame: .zero)
+        profileView.profileDelegate = self
         profileView.userViewModel = user.profileViewModelCreator()
         profilesView.addSubview(profileView)
         profileView.fillSuperView()
@@ -97,5 +99,12 @@ extension UserListViewController {
 extension UserListViewController: SettingControllerDelegate {
     func settingsSaved() {
         getCurrentUser()
+    }
+}
+extension UserListViewController: ProfileDetailDelegate {
+    func showProfileDetail() {
+        let viewController = UserDetailViewController()
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
     }
 }

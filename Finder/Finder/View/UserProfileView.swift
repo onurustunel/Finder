@@ -21,7 +21,14 @@ class UserProfileView: UIView {
         image.clipsToBounds = true
         return image
     }()
+    private lazy var detailButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "profileDetail")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(showProfileDetail), for: .touchUpInside)
+        return button
+    }()
     fileprivate let gradientLayer = CAGradientLayer()
+    var profileDelegate: ProfileDetailDelegate?
     private lazy var usernameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -55,6 +62,9 @@ class UserProfileView: UIView {
         default:
             break
         }
+    }
+    @objc func showProfileDetail() {
+        profileDelegate?.showProfileDetail()
     }
 
     @objc func changePicture(tapGesture: UITapGestureRecognizer) {
@@ -116,8 +126,11 @@ class UserProfileView: UIView {
         imageView.fillSuperView()
         gradientLayerMaker()
         addSubview(usernameLabel)
+        addSubview(detailButton)
         usernameLabel.anchor(top: nil, bottom: self.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor,
                              padding: .init(top: 0, left: 20, bottom: 20, right: 20))
+        detailButton.anchor(top: nil, bottom: bottomAnchor, leading: nil, trailing: trailingAnchor,
+                            padding: .init(top: 0, left: 0, bottom: 20, right: 20), size: .init(width: 36, height: 36))
         imageBarPresenter()
     }
     private func updateUI() {
@@ -139,4 +152,7 @@ class UserProfileView: UIView {
             self?.imageBarStackView.arrangedSubviews[index].backgroundColor = ConstantColor.white
         }
     }
+}
+protocol ProfileDetailDelegate {
+    func showProfileDetail()
 }
