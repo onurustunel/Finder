@@ -18,16 +18,24 @@ class UserListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        configureProfiles()
-        getUserData()
+        getCurrentUser()
     }
-    
-   private func getUserData() {
-    let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").order(by: "\(FirebasePath.userID)").start(at: [lastUser?.userID ?? ""]).limit(to: 2)
-    query.getDocuments { (snapshot, error) in
-        if let error = error {
-            return
+    fileprivate func getCurrentUser() {
+        self.cleanOldProfiles()
+        Firestore.firestore().getCurrentUser { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            self.lastUser = user
+            self.getUserData()
         }
+    }
+
+   private func getUserData() {
+    let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").whereField("age", isGreaterThanOrEqualTo: lastUser?.minimumAge ?? 18).whereField("age", isLessThanOrEqualTo: lastUser?.maximumAge ?? 90)
+    query.getDocuments { (snapshot, error) in
+        if let error = error { return }
         snapshot?.documents.forEach({ (snapshot) in
             let userData = snapshot.data()
             let user = User(userData: userData)
@@ -35,7 +43,6 @@ class UserListViewController: UIViewController {
             self.lastUser = user
             self.createProfileFromUser(user: user)
         })
-//        self.configureProfiles()
     }
     }
     fileprivate func createProfileFromUser(user: User) {
@@ -46,10 +53,11 @@ class UserListViewController: UIViewController {
     }
     @objc func refreshUserList() {
         usersProfileViewModel.removeAll()
-        getUserData()
+        getCurrentUser()
     }
     @objc func goToSettings() {
         let viewController = SettingsTableViewController()
+        viewController.settingsDelegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true, completion: nil)
     }
@@ -80,5 +88,14 @@ extension UserListViewController {
     private func buttonAction() {
         bottomStackView.refreshButton.addTarget(self, action: #selector(refreshUserList), for: .touchUpInside)
         topStackView.profileButton.addTarget(self, action: #selector(goToSettings), for: .touchUpInside)
+    }
+    private func cleanOldProfiles() {
+        profilesView.subviews.forEach { $0.removeFromSuperview() }
+        usersProfileViewModel.removeAll()
+    }
+}
+extension UserListViewController: SettingControllerDelegate {
+    func settingsSaved() {
+        getCurrentUser()
     }
 }

@@ -11,7 +11,7 @@ import JGProgressHUD
 import SDWebImage
 
 class SettingsTableViewController: UITableViewController {
-   
+    
     lazy var firstImageButton = UIButton.buttonMaker(title: "Upload Image", selector: #selector(chooseImage), controller: self)
     lazy var secondImageButton = UIButton.buttonMaker(title: "Upload Image", selector: #selector(chooseImage), controller: self)
     lazy var thirdImageButton = UIButton.buttonMaker(title: "Upload Image", selector: #selector(chooseImage), controller: self)
@@ -33,6 +33,7 @@ class SettingsTableViewController: UITableViewController {
         return headerView
     }()
     var currentUser: User?
+    var settingsDelegate: SettingControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +51,12 @@ class SettingsTableViewController: UITableViewController {
     }
     
     private func getUserData() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("\(FirebasePath.userListPath)").document(uid).getDocument { (snapshot, error) in
+        Firestore.firestore().getCurrentUser { (user, error) in
             if let error = error {
-                print("User data is not reachable...")
+                print(error.localizedDescription)
                 return
             }
-            guard let userInfo = snapshot?.data() else { return }
-            self.currentUser = User(userData: userInfo)
+            self.currentUser = user
             self.getProfileImages()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -79,6 +78,9 @@ class SettingsTableViewController: UITableViewController {
             "maximumAge": currentUser?.maximumAge ?? 90            
         ]
         Firestore.firestore().collection("\(FirebasePath.userListPath)").document(uid).setData(updateData)
+        dismiss(animated: true) {
+            self.settingsDelegate?.settingsSaved()
+        }
     }
     
     fileprivate func getProfileImages() {
@@ -195,8 +197,6 @@ extension SettingsTableViewController: UIImagePickerControllerDelegate & UINavig
                     self.currentUser?.thirdImageUrl = url?.absoluteString
                 }
             }
-            
-            
         }
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -232,4 +232,7 @@ extension SettingsTableViewController: IAgeRangeSlider {
     func maximumAgeSlider(slider: UISlider) {
         currentUser?.maximumAge = Int(slider.value)
     }
+}
+protocol SettingControllerDelegate {
+    func settingsSaved()
 }

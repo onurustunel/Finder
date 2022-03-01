@@ -38,6 +38,7 @@
 		774C8D962767C6FD00DFBA15 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C8D952767C6FD00DFBA15 /* RegisterViewModel.swift */; };
 		774C8DB82767E52800DFBA15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */; };
 		774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C8DBC2767F13A00DFBA15 /* Bindable.swift */; };
+		77656CB327CEBADB008B9B63 /* Extension+Firestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77656CB227CEBADB008B9B63 /* Extension+Firestore.swift */; };
 		777AECEA27CD5C0200810E48 /* AgeRangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777AECE927CD5C0200810E48 /* AgeRangeTableViewCell.swift */; };
 		77CD45B227C93519007769FA /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CD45B127C93519007769FA /* FirebasePath.swift */; };
 		77D820812784DF3400613E93 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D820802784DF3400613E93 /* Extension+UIViewController.swift */; };
@@ -99,6 +100,7 @@
 		774C8D952767C6FD00DFBA15 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		774C8DB72767E52800DFBA15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		774C8DBC2767F13A00DFBA15 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		77656CB227CEBADB008B9B63 /* Extension+Firestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Firestore.swift"; sourceTree = "<group>"; };
 		777AECE927CD5C0200810E48 /* AgeRangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeTableViewCell.swift; sourceTree = "<group>"; };
 		77CD45B127C93519007769FA /* FirebasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
 		77D820802784DF3400613E93 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				77E9D93B2758195300A4BF91 /* Constants.swift */,
 				77D820802784DF3400613E93 /* Extension+UIViewController.swift */,
 				771D986427B98A52000240F3 /* Extension+UIKit.swift */,
+				77656CB227CEBADB008B9B63 /* Extension+Firestore.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				772A5B85275B834A00BBE25F /* BackgroundGradient.swift in Sources */,
 				77E11DD627C58BB800D4C8F6 /* HeaderTitleLabel.swift in Sources */,
 				772A5B76275B80D800BBE25F /* SplashScreenViewController.swift in Sources */,
+				77656CB327CEBADB008B9B63 /* Extension+Firestore.swift in Sources */,
 				771D986527B98A52000240F3 /* Extension+UIKit.swift in Sources */,
 				774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */,
 				77CD45B227C93519007769FA /* FirebasePath.swift in Sources */,
