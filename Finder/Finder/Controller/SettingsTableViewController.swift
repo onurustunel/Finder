@@ -38,7 +38,6 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        //        fastLogin()
         getUserData()
     }
     private func setNavigationBar() {
@@ -103,16 +102,18 @@ class SettingsTableViewController: UITableViewController {
             }
         }
     }
-    
-    private func fastLogin() {
-        Auth.auth().signIn(withEmail: "ahmet@gmail.com", password: "******", completion: nil)
-        print("test login")
-    }
     @objc private func cancelPressed() {
         dismiss(animated: true, completion: nil)
     }
     @objc private func logoutPressed() {
-        //NOTE: User will logout here...
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("User could not exit... Error", error.localizedDescription)
+        }
+        let viewController = SplashScreenViewController()
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
     }
     @objc func updatePersonalInfo() {
         updatePersonalData()

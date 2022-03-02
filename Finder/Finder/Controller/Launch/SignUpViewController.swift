@@ -55,6 +55,15 @@ class SignUpViewController: UIViewController {
         button.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
         return button
     }()
+    let haveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Already have an account?", for: .normal)
+        button.titleLabel?.font = AppFont.appFontStyle(size: 17, style: .bold)
+        button.setTitleColor(.link, for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        button.addTarget(self, action: #selector(alreadyHaveAccount), for: .touchUpInside)
+        return button
+    }()
     private lazy var signUpStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [profileImage, textName, textEmailAddress, textPassword, signUpButton])
         view.axis = .vertical
@@ -73,6 +82,7 @@ class SignUpViewController: UIViewController {
         view.addSubview(containerView)
         containerView.frame = view.bounds
         view.addSubview(signUpStackView)
+        view.addSubview(haveAccountButton)
         stackViewConfigure()
         selectImageGesture()
     }
@@ -81,6 +91,7 @@ class SignUpViewController: UIViewController {
         signUpButton.widthAnchor.constraint(equalToConstant: 180).isActive = true
         signUpStackView.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 45, bottom: 0, right: 34))
         signUpStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        haveAccountButton.anchor(top: nil, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 24, bottom: 32, right: 24))
     }
     private func notificationObserve() {
         NotificationCenter.default.addObserver(self, selector: #selector(captureKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -94,6 +105,9 @@ class SignUpViewController: UIViewController {
         } else if textField == textPassword {
             registerViewModel.password = textField.text
         }
+    }
+    @objc func alreadyHaveAccount() {
+        presentNextViewController(nextController: LoginViewController())
     }
     @objc private func captureKeyboardShow(notification: Notification) {
         guard let keyboardEndValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }

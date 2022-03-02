@@ -14,11 +14,14 @@ class UserListViewController: UIViewController {
     let profilesView = UIView()
     var usersProfileViewModel = [UserProfileViewModel]()
     var currentUser: User?
+    let indicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        getCurrentUser()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.getCurrentUser()
+        }
     }
     fileprivate func getCurrentUser() {
         self.cleanOldProfiles()
@@ -31,7 +34,6 @@ class UserListViewController: UIViewController {
             self.getUserData()
         }
     }
-    
     private func getUserData() {
         let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").whereField("age", isGreaterThanOrEqualTo: currentUser?.minimumAge ?? 18).whereField("age", isLessThanOrEqualTo: currentUser?.maximumAge ?? 90)
         query.getDocuments { (snapshot, error) in
@@ -45,6 +47,7 @@ class UserListViewController: UIViewController {
                 }
             })
         }
+        indicator.stopAnimating()
     }
     fileprivate func createProfileFromUser(user: User) {
         let profileView = UserProfileView(frame: .zero)
@@ -74,6 +77,9 @@ extension UserListViewController {
         mainStackView.axis = .vertical
         mainStackView.spacing = 10
         view.addSubview(mainStackView)
+        view.addSubview(indicator)
+        indicator.center = view.center
+        indicator.startAnimating()
         mainStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         mainStackView.isLayoutMarginsRelativeArrangement = true
         mainStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
