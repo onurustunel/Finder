@@ -108,8 +108,9 @@ extension UserListViewController: SettingControllerDelegate {
     }
 }
 extension UserListViewController: ProfileDetailDelegate {
-    func showProfileDetail() {
+    func showProfileDetail(userViewModel: UserProfileViewModel) {
         let viewController = UserDetailViewController()
+        viewController.userDetail = userViewModel
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true, completion: nil)
     }

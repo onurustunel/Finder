@@ -30,11 +30,11 @@ struct User: UserProfileViewModelCreator {
         self.maximumAge = userData["maximumAge"] as? Int
     }  
     func profileViewModelCreator() -> UserProfileViewModel {
-        let attributedText = NSMutableAttributedString(string: "\(username ?? ""),", attributes: [.font: AppFont.appFontStyle(size: 22, style: .bold)])
+        let attributedText = NSMutableAttributedString(string: "\(username ?? ""),", attributes: [.font: AppFont.appFontStyle(size: 24, style: .bold)])
         let currentAge = age != nil ? "\(age!)" : ""
         let currentOccupation = occupation != nil ? "\(occupation!)" : ""
-        attributedText.append(NSAttributedString(string: " \(currentAge)", attributes: [.font: AppFont.appFontStyle(size: 18, style: .bold)]))
-        attributedText.append(NSAttributedString(string: "\n🍻\(currentOccupation)", attributes: [.font: AppFont.appFontStyle(size: 16, style: .bold)]))
+        attributedText.append(NSAttributedString(string: " \(currentAge)", attributes: [.font: AppFont.appFontStyle(size: 20, style: .bold)]))
+        attributedText.append(NSAttributedString(string: "\n🍻\(currentOccupation)", attributes: [.font: AppFont.appFontStyle(size: 18, style: .bold)]))
         var imageURL = [String]()
         if let url = firstImageUrl, !url.isEmpty { imageURL.append(url) }
         if let url = secondImageUrl, !url.isEmpty { imageURL.append(url) }

@@ -64,7 +64,7 @@ class UserProfileView: UIView {
         }
     }
     @objc func showProfileDetail() {
-        profileDelegate?.showProfileDetail()
+        profileDelegate?.showProfileDetail(userViewModel: userViewModel)
     }
 
     @objc func changePicture(tapGesture: UITapGestureRecognizer) {
@@ -154,5 +154,5 @@ class UserProfileView: UIView {
     }
 }
 protocol ProfileDetailDelegate {
-    func showProfileDetail()
+    func showProfileDetail(userViewModel: UserProfileViewModel)
 }

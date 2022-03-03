@@ -23,21 +23,21 @@ class SignUpViewController: UIViewController {
         return image
     }()
     let textName: CustomTextField = {
-        let textField = CustomTextField(padding: 20)
+        let textField = CustomTextField(padding: 20, height: 42)
         textField.keyboardType = .emailAddress
         textField.placeholder = "Your Name:"
         textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         return textField
     }()
     let textEmailAddress: CustomTextField = {
-        let textField = CustomTextField(padding: 20)
+        let textField = CustomTextField(padding: 20, height: 42)
         textField.keyboardType = .emailAddress
         textField.placeholder = "Your Email:"
         textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         return textField
     }()
     let textPassword: CustomTextField = {
-        let textField = CustomTextField(padding: 20)
+        let textField = CustomTextField(padding: 20, height: 42)
         textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         textField.placeholder = "Your Password:"
         textField.isSecureTextEntry = true

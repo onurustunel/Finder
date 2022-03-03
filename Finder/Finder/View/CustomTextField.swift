@@ -9,13 +9,15 @@ import UIKit
 
 class CustomTextField: UITextField {
     let padding: CGFloat
+    let height: CGFloat
     var seperatorView: UIView = {
        let view = UIView()
         view.backgroundColor = ConstantColor.white
         return view
     }()
-    init(padding: CGFloat, addSeperator: Bool = true) {
+    init(padding: CGFloat, height: CGFloat, addSeperator: Bool = true) {
         self.padding = padding
+        self.height = height
         super.init(frame: .zero)
         configureCustomTextField()
         if addSeperator { self.addSeperatorView() }
@@ -28,7 +30,7 @@ class CustomTextField: UITextField {
         textColor = ConstantColor.white
     }
     override var intrinsicContentSize: CGSize {
-        return .init(width: 0, height: 42)
+        return .init(width: 0, height: height)
     }
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: padding, dy: 0)

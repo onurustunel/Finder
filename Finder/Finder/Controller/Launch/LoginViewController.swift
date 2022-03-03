@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     let loginViewModel = LoginViewModel()
     lazy var logoImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         image.heightAnchor.constraint(equalToConstant: 100).isActive = true
         image.layer.cornerRadius = 20
@@ -23,14 +23,14 @@ class LoginViewController: UIViewController {
         return image
     }()
     let textEmailAddress: CustomTextField = {
-        let textField = CustomTextField(padding: 20)
+        let textField = CustomTextField(padding: 20, height: 42)
         textField.keyboardType = .emailAddress
         textField.placeholder = "Your Email"
         textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         return textField
     }()
     let textPassword: CustomTextField = {
-        let textField = CustomTextField(padding: 20)
+        let textField = CustomTextField(padding: 20, height: 42)
         textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         textField.placeholder = "Your Password"
         textField.isSecureTextEntry = true
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
     private func stackViewConfigure() {
         view.addSubview(loginStackView)
         loginButton.widthAnchor.constraint(equalToConstant: 180).isActive = true
-        loginStackView.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 45, bottom: 0, right: 34))
+        loginStackView.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 45, bottom: 0, right: 45))
         loginStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         registerButton.anchor(top: nil, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 24, bottom: 32, right: 24))
     }
