@@ -15,6 +15,7 @@ class UserProfileView: UIView {
             imageTopViewConfigure(count: userViewModel.imageNames.count)
         }
     }
+    var nextProfileView: UserProfileView?
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -77,8 +78,10 @@ class UserProfileView: UIView {
         let hideProfile: Bool = abs(panGesture.translation(in: nil).x) > frameLimit
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .curveEaseInOut) {
             if hideProfile {
+                translationDirection == 1 ? self.profileDelegate?.likedUser(profile: self) : self.profileDelegate?.dislikedUser(profile: self)
                 self.frame = CGRect(x: 1500 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
                 self.removeFromSuperview()
+                self.profileDelegate?.removeProfileView(profile: self)
             } else {
                 self.transform = .identity
             }
@@ -161,4 +164,7 @@ class UserProfileView: UIView {
 }
 protocol ProfileDetailDelegate {
     func showProfileDetail(userViewModel: UserProfileViewModel)
+    func removeProfileView(profile: UserProfileView)
+    func likedUser(profile: UserProfileView)
+    func dislikedUser(profile: UserProfileView)
 }

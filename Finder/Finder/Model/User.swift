@@ -39,6 +39,6 @@ struct User: UserProfileViewModelCreator {
         if let url = firstImageUrl, !url.isEmpty { imageURL.append(url) }
         if let url = secondImageUrl, !url.isEmpty { imageURL.append(url) }
         if let url = thirdImageUrl, !url.isEmpty { imageURL.append(url) }
-        return UserProfileViewModel(attributedString: attributedText, imageNames: imageURL, infoLocation: .left)
+        return UserProfileViewModel(attributedString: attributedText, imageNames: imageURL, infoLocation: .left, userID: self.userID ?? "")
     }
 }

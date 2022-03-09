@@ -15,6 +15,7 @@ class UserListViewController: UIViewController {
     var usersProfileViewModel = [UserProfileViewModel]()
     var currentUser: User?
     let indicator = UIActivityIndicatorView()
+    var shownTopProfileView: UserProfileView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,8 @@ class UserListViewController: UIViewController {
     }
     private func getUserData() {
         let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").whereField("age", isGreaterThanOrEqualTo: currentUser?.minimumAge ?? 18).whereField("age", isLessThanOrEqualTo: currentUser?.maximumAge ?? 90)
+        var previousProfileView: UserProfileView?
+        shownTopProfileView = nil
         query.getDocuments { (snapshot, error) in
             if let error = error { return }
             snapshot?.documents.forEach({ (snapshot) in
@@ -43,28 +46,92 @@ class UserListViewController: UIViewController {
                 let user = User(userData: userData)
                 self.usersProfileViewModel.append(user.profileViewModelCreator())
                 if user.userID != self.currentUser?.userID {
-                    self.createProfileFromUser(user: user)
+                    let profileView = self.createProfileFromUser(user: user)
+                    if self.shownTopProfileView == nil {
+                        self.shownTopProfileView = profileView
+                    }
+                    previousProfileView?.nextProfileView = profileView
+                    previousProfileView = profileView
                 }
             })
         }
         indicator.stopAnimating()
     }
-    fileprivate func createProfileFromUser(user: User) {
+    fileprivate func createProfileFromUser(user: User) -> UserProfileView {
         let profileView = UserProfileView(frame: .zero)
         profileView.profileDelegate = self
         profileView.userViewModel = user.profileViewModelCreator()
         profilesView.addSubview(profileView)
+        profilesView.sendSubviewToBack(profileView)
         profileView.fillSuperView()
+        return profileView
     }
     @objc func refreshUserList() {
-        usersProfileViewModel.removeAll()
-        getCurrentUser()
+        if shownTopProfileView == nil {
+            usersProfileViewModel.removeAll()
+            self.getCurrentUser()
+        }
     }
+    //MARK:- Like a profile
+    @objc func profileLiked() {
+        transitionAnimation(liked: true)
+        saveTransitions(status: 1)
+    }
+    @objc func dislikeProfile() {
+        saveTransitions(status: -1)
+        transitionAnimation(liked: false)
+    }
+    fileprivate func saveTransitions(status: Int) {
+        guard let userID = currentUser?.userID else { return }
+        guard let profileID = shownTopProfileView?.userViewModel.userID else { return }
+        let createData = [profileID: status]
+        Firestore.firestore().collection(FirebasePath.like).document(userID).getDocument { (snapshot, error) in
+            if let error = error {
+                print("Data could not get from server", error.localizedDescription)
+                return
+            }
+            if snapshot?.exists == true {
+                Firestore.firestore().collection(FirebasePath.like).document(userID).updateData(createData) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            } else {
+                Firestore.firestore().collection(FirebasePath.like).document(userID).setData(createData) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
     @objc func goToSettings() {
         let viewController = SettingsTableViewController()
         viewController.settingsDelegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true, completion: nil)
+    }
+    
+    fileprivate func transitionAnimation(liked: Bool) {
+        let constant: CGFloat =  liked ? 1 : -1
+        let basicAnimation = CABasicAnimation(keyPath: "position.x")
+        basicAnimation.toValue = constant * 800
+        basicAnimation.duration = 1
+        basicAnimation.fillMode = .forwards
+        basicAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        basicAnimation.isRemovedOnCompletion = false
+        let transform = CABasicAnimation(keyPath: "transform.rotation.z")
+        transform.toValue = constant *  CGFloat.pi * 20 / 180
+        transform.duration = 1
+        let shownTopViewCopy = shownTopProfileView
+        shownTopProfileView = shownTopViewCopy?.nextProfileView
+        CATransaction.setCompletionBlock {
+            shownTopViewCopy?.removeFromSuperview()
+        }
+        shownTopViewCopy?.layer.add(basicAnimation, forKey: "likeAnimation")
+        shownTopViewCopy?.layer.add(transform, forKey: "transform")
+        CATransaction.commit()
     }
 }
 //MARK:- Layout functions
@@ -95,6 +162,8 @@ extension UserListViewController {
     }
     private func buttonAction() {
         bottomStackView.refreshButton.addTarget(self, action: #selector(refreshUserList), for: .touchUpInside)
+        bottomStackView.likeButton.addTarget(self, action: #selector(profileLiked), for: .touchUpInside)
+        bottomStackView.closeButton.addTarget(self, action: #selector(dislikeProfile), for: .touchUpInside)
         topStackView.profileButton.addTarget(self, action: #selector(goToSettings), for: .touchUpInside)
     }
     private func cleanOldProfiles() {
@@ -108,6 +177,19 @@ extension UserListViewController: SettingControllerDelegate {
     }
 }
 extension UserListViewController: ProfileDetailDelegate {
+    func likedUser(profile: UserProfileView) {
+        saveTransitions(status: 1)
+    }
+    
+    func dislikedUser(profile: UserProfileView) {
+        saveTransitions(status: -1)
+    }
+    
+    func removeProfileView(profile: UserProfileView) {
+        self.shownTopProfileView?.removeFromSuperview()
+        self.shownTopProfileView = self.shownTopProfileView?.nextProfileView
+    }
+    
     func showProfileDetail(userViewModel: UserProfileViewModel) {
         let viewController = UserDetailViewController()
         viewController.userDetail = userViewModel

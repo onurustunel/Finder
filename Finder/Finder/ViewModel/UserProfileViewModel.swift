@@ -11,10 +11,12 @@ class UserProfileViewModel {
     let attributedString: NSAttributedString
     let imageNames: [String]
     let infoLocation: NSTextAlignment
-    internal init(attributedString: NSAttributedString, imageNames: [String], infoLocation: NSTextAlignment) {
+    let userID: String
+    internal init(attributedString: NSAttributedString, imageNames: [String], infoLocation: NSTextAlignment, userID: String) {
         self.attributedString = attributedString
         self.imageNames = imageNames
         self.infoLocation = infoLocation
+        self.userID = userID
     }
     private var imageIndex = 0 {
         didSet {

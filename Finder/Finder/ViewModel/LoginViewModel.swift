@@ -33,8 +33,7 @@ class LoginViewModel {
                 completion(error)
             } else {
                 completion(nil) 
-            }
-                    
+            } 
         }
     }
 
