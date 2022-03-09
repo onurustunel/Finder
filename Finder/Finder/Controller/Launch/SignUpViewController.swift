@@ -14,11 +14,11 @@ class SignUpViewController: UIViewController {
     let registerViewModel = RegisterViewModel()
     lazy var profileImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
-        image.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 240).isActive = true
         image.layer.cornerRadius = 20
-        image.image = UIImage(named: "gencay")
+        image.image = UIImage(named: "placeHolderProfil")
         image.clipsToBounds = true
         return image
     }()
@@ -88,7 +88,6 @@ class SignUpViewController: UIViewController {
     }
     private func stackViewConfigure() {
         view.addSubview(signUpStackView)
-        signUpButton.widthAnchor.constraint(equalToConstant: 180).isActive = true
         signUpStackView.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 45, bottom: 0, right: 34))
         signUpStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         haveAccountButton.anchor(top: nil, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 24, bottom: 32, right: 24))
@@ -185,6 +184,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[.originalImage] as? UIImage
         registerViewModel.bindableImage.value = selectedImage
+        registerViewModel.dataIsValid()
         dismiss(animated: true, completion: nil)
     }
 }

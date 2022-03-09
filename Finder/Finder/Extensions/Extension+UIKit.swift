@@ -11,7 +11,7 @@ extension UIButton {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
-        button.backgroundColor = .orange
+        button.backgroundColor = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 0.05)
         button.setTitle("\(title)", for: .normal)
         button.addTarget(controller, action: selector, for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFill

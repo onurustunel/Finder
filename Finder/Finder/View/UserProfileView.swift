@@ -136,19 +136,25 @@ class UserProfileView: UIView {
     private func updateUI() {
         let imageName = userViewModel.imageNames.first ?? ""
         if let imageUrl = URL(string: imageName) {
-            self.imageView.sd_setImage(with: imageUrl)
-        }        
+            self.imageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeHolderProfil")!, options: .continueInBackground)
+        } else {
+            self.imageView.image = UIImage(named: "placeHolderProfil")
+        }
         usernameLabel.attributedText = userViewModel.attributedString
         usernameLabel.textAlignment = userViewModel.infoLocation
     }
     private func imageIndexObserve() {
         userViewModel.imageIndexObserver = { [weak self] (index, imageUrl) in
+            if let imageUrl = URL(string: imageUrl ?? "") {
+                self?.imageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeHolderProfil")!, options: .continueInBackground)
+            } else {
+                self?.imageView.image = UIImage(named: "placeHolderProfil")
+            }
+            
             self?.imageBarStackView.arrangedSubviews.forEach { (subView) in
                 subView.backgroundColor = ConstantColor.gray
             }
-            if let imageUrl = URL(string: imageUrl ?? "") {
-                self?.imageView.sd_setImage(with: imageUrl)
-            }
+        
             self?.imageBarStackView.arrangedSubviews[index].backgroundColor = ConstantColor.white
         }
     }

@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         if alreadyLoggedIn {
             window?.rootViewController = UINavigationController(rootViewController: UserListViewController())
-//            window?.rootViewController = UserDetailViewController()
+//            window?.rootViewController = ImageSlidePageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         } else {
             window?.rootViewController = SplashScreenViewController()
         }

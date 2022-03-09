@@ -43,6 +43,7 @@
 		77656CB827CECC10008B9B63 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77656CB727CECC10008B9B63 /* UserDetailViewController.swift */; };
 		777AECEA27CD5C0200810E48 /* AgeRangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777AECE927CD5C0200810E48 /* AgeRangeTableViewCell.swift */; };
 		7787E2B027D16595002F2D7B /* ProfileDetailBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787E2AF27D16595002F2D7B /* ProfileDetailBottomView.swift */; };
+		779492A927D4E882005D95EC /* ImageSlidePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779492A827D4E882005D95EC /* ImageSlidePageViewController.swift */; };
 		77CD45B227C93519007769FA /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CD45B127C93519007769FA /* FirebasePath.swift */; };
 		77D820812784DF3400613E93 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D820802784DF3400613E93 /* Extension+UIViewController.swift */; };
 		77E11DCE27C57AD000D4C8F6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E11DCD27C57AD000D4C8F6 /* SettingsTableViewCell.swift */; };
@@ -108,6 +109,7 @@
 		77656CB727CECC10008B9B63 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		777AECE927CD5C0200810E48 /* AgeRangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeTableViewCell.swift; sourceTree = "<group>"; };
 		7787E2AF27D16595002F2D7B /* ProfileDetailBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailBottomView.swift; sourceTree = "<group>"; };
+		779492A827D4E882005D95EC /* ImageSlidePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlidePageViewController.swift; sourceTree = "<group>"; };
 		77CD45B127C93519007769FA /* FirebasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
 		77D820802784DF3400613E93 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		77E11DCD27C57AD000D4C8F6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				772A5BA5275BC71E00BBE25F /* CustomTextField.swift */,
 				77E11DD527C58BB800D4C8F6 /* HeaderTitleLabel.swift */,
 				7787E2AF27D16595002F2D7B /* ProfileDetailBottomView.swift */,
+				779492A827D4E882005D95EC /* ImageSlidePageViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				77CD45B227C93519007769FA /* FirebasePath.swift in Sources */,
 				77656CB827CECC10008B9B63 /* UserDetailViewController.swift in Sources */,
 				772A5BA6275BC71E00BBE25F /* CustomTextField.swift in Sources */,
+				779492A927D4E882005D95EC /* ImageSlidePageViewController.swift in Sources */,
 				772A5B7B275B814000BBE25F /* LoginViewController.swift in Sources */,
 				77195A76274ECA56006B30C4 /* UserListViewController.swift in Sources */,
 				7727ECAD27500E1C00358027 /* Animation+UIView.swift in Sources */,

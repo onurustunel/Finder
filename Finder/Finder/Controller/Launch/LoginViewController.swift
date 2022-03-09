@@ -108,16 +108,17 @@ class LoginViewController: UIViewController {
     }
     @objc private func login() {
         self.hideKeyboard()
-        loginViewModel.createNewAccount { (error) in
-            if let error = error {
-                self.errorInformation(error: error)
+        loginViewModel.loginAccount { (error) in
+            if error != nil {
+                self.errorInformation(error: error?.localizedDescription ?? "Error")
+                self.hud.dismiss()
                 return
+            } else {
+                let viewController = UINavigationController(rootViewController: UserListViewController())
+                viewController.modalPresentationStyle = .fullScreen
+                self.present(viewController, animated: true, completion: nil)
             }
-        }
-        hud.dismiss()
-        let viewController = UINavigationController(rootViewController: UserListViewController())
-        viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true, completion: nil)
+    }        
     }
     private func hideKeyboard() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideShownKeyboard)))
@@ -140,17 +141,17 @@ class LoginViewController: UIViewController {
         }
         loginViewModel.bindableLogin.assignValue { (registering) in
             if registering == true {
-                self.hud.textLabel.text = "Welcome again..."
+                self.hud.textLabel.text = "Logging into account"
                 self.hud.show(in: self.view)
             } else {
                 self.hud.dismiss()
             }
         }
     }
-    fileprivate func errorInformation(error: Error) {
+    fileprivate func errorInformation(error: String) {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "There is an error!"
-        hud.detailTextLabel.text = error.localizedDescription
+        hud.detailTextLabel.text = error
         hud.show(in: self.view)
         hud.dismiss(afterDelay: 2, animated: true)
     }

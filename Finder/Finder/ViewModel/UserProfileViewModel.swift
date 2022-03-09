@@ -29,6 +29,7 @@ class UserProfileViewModel {
         imageIndex = imageIndex - 1 < 0 ? imageNames.count - 1 : imageIndex - 1
     }
     private func updateImage() {
+        if imageNames.isEmpty { return }
         let imageUrl = imageNames[imageIndex]   
         imageIndexObserver?(imageIndex, imageUrl)
     }

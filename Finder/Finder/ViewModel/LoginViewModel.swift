@@ -25,15 +25,16 @@ class LoginViewModel {
         let dataValid = emailAdress?.isEmpty == false && password?.isEmpty == false
         bindableValidDataChecker.value = dataValid
     }
-    func createNewAccount(completion: @escaping (Error?) -> ()) {
+    func loginAccount(completion: @escaping (Error?) -> ()) {
         guard let emailAddress = emailAdress, let password = password  else { return }
         self.bindableLogin.value = true
         Auth.auth().signIn(withEmail: emailAddress, password: password) { (_, error) in
             if let error = error {
                 completion(error)
-                return
+            } else {
+                completion(nil) 
             }
-         
+                    
         }
     }
 

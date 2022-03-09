@@ -27,8 +27,8 @@ class RegisterViewModel {
     var bindableImage = Bindable<UIImage>()
     var bindableValidDataChecker = Bindable<Bool>()
     var bindableSignUP = Bindable<Bool>()
-    fileprivate func dataIsValid() {
-        let dataValid = emailAdress?.isEmpty == false && nameAndSurname?.isEmpty == false && password?.isEmpty == false
+    func dataIsValid() {
+        let dataValid = emailAdress?.isEmpty == false && nameAndSurname?.isEmpty == false && password?.isEmpty == false && bindableImage.value != nil
         bindableValidDataChecker.value = dataValid
     }
     func createNewAccount(completion: @escaping (Error?) -> ()) {
