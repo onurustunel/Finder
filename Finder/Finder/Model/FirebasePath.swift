@@ -10,5 +10,5 @@ struct FirebasePath {
     static let userListPath = "UserList"
     static let userID = "userID"
     static let imagesPath = "Images"
-    static let like = "LikeDislike"
+    static let LikeDislike = "LikeDislike"
 }

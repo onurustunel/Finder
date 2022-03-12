@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = UINavigationController(rootViewController: UserListViewController())
 //            window?.rootViewController = ImageSlidePageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         } else {
-            window?.rootViewController = SplashScreenViewController()
+            window?.rootViewController = UINavigationController(rootViewController: SplashScreenViewController())
         }
        
         window?.makeKeyAndVisible()

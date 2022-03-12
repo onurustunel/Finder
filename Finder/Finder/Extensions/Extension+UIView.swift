@@ -63,11 +63,11 @@ extension UIView {
     }
     func centerLocatedSuperView(size: CGSize = .zero) {
         translatesAutoresizingMaskIntoConstraints = false
-        if let merkezX = superview?.centerXAnchor {
-            centerXAnchor.constraint(equalTo: merkezX).isActive = true
+        if let centerX = superview?.centerXAnchor {
+            centerXAnchor.constraint(equalTo: centerX).isActive = true
         }
-        if let merkezY = superview?.centerYAnchor {
-            centerYAnchor.constraint(equalTo: merkezY).isActive = true
+        if let centerY = superview?.centerYAnchor {
+            centerYAnchor.constraint(equalTo: centerY).isActive = true
         }
         if size.height != 0 {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
@@ -105,7 +105,7 @@ extension UIView {
         return constraints
     }
     @discardableResult
-    func constraintGenislik(_ width: CGFloat) -> AnchorConstraints {
+    func constraintWidth(_ width: CGFloat) -> AnchorConstraints {
         translatesAutoresizingMaskIntoConstraints = false
         var constraints = AnchorConstraints()
         constraints.width = widthAnchor.constraint(equalToConstant: width)

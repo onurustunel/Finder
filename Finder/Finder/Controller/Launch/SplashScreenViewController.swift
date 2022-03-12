@@ -30,6 +30,7 @@ class SplashScreenViewController: UIViewController {
 }
 extension SplashScreenViewController {
     private func configureView() {
+        navigationController?.navigationBar.isHidden = true
         view.addSubview(splashView)
         splashView.frame = view.bounds
     }

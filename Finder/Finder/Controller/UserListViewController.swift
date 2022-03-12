@@ -16,6 +16,7 @@ class UserListViewController: UIViewController {
     var currentUser: User?
     let indicator = UIActivityIndicatorView()
     var shownTopProfileView: UserProfileView?
+    var likeDislikesStatus = [String: Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,26 @@ class UserListViewController: UIViewController {
                 return
             }
             self.currentUser = user
+//            self.getUserData()
+            self.getLikeDislikes()
+        }
+    }
+    fileprivate func getLikeDislikes() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        Firestore.firestore().collection(FirebasePath.LikeDislike).document(userID).getDocument { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let likeDislikesStatus = snapshot?.data() as? [String : Int]  else {
+                self.likeDislikesStatus.removeAll()
+                self.getUserData()
+                return
+                
+            }
+            self.likeDislikesStatus = likeDislikesStatus
             self.getUserData()
         }
     }
@@ -45,7 +66,11 @@ class UserListViewController: UIViewController {
                 let userData = snapshot.data()
                 let user = User(userData: userData)
                 self.usersProfileViewModel.append(user.profileViewModelCreator())
-                if user.userID != self.currentUser?.userID {
+                
+                let isCurrentUser = user.userID == Auth.auth().currentUser?.uid
+//                let shownBefore = self.likeDislikesStatus[user.userID ?? ""] != nil
+                let shownBefore = false
+                if !isCurrentUser && !shownBefore {
                     let profileView = self.createProfileFromUser(user: user)
                     if self.shownTopProfileView == nil {
                         self.shownTopProfileView = profileView
@@ -67,10 +92,14 @@ class UserListViewController: UIViewController {
         return profileView
     }
     @objc func refreshUserList() {
-        if shownTopProfileView == nil {
-            usersProfileViewModel.removeAll()
-            self.getCurrentUser()
-        }
+//        if shownTopProfileView == nil {
+//            usersProfileViewModel.removeAll()
+//            self.getCurrentUser()
+//        }
+        profilesView.subviews.forEach { $0.removeFromSuperview() }
+        self.getCurrentUser()
+        
+        
     }
     //MARK:- Like a profile
     @objc func profileLiked() {
@@ -81,29 +110,60 @@ class UserListViewController: UIViewController {
         saveTransitions(status: -1)
         transitionAnimation(liked: false)
     }
+    fileprivate func matchControl(profileID: String) {
+        print(usersProfileViewModel.count - 1)
+        print("match control is working")
+        Firestore.firestore().collection(FirebasePath.LikeDislike).document(profileID).getDocument { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let data = snapshot?.data() else { return }
+            print(data)
+            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+            let isMatched = data[currentUserID] as? Int == 1
+            if isMatched {
+                self.createMatchView(profileID: profileID)
+            }
+        }
+    }
     fileprivate func saveTransitions(status: Int) {
         guard let userID = currentUser?.userID else { return }
         guard let profileID = shownTopProfileView?.userViewModel.userID else { return }
         let createData = [profileID: status]
-        Firestore.firestore().collection(FirebasePath.like).document(userID).getDocument { (snapshot, error) in
+        Firestore.firestore().collection(FirebasePath.LikeDislike).document(userID).getDocument { (snapshot, error) in
             if let error = error {
                 print("Data could not get from server", error.localizedDescription)
                 return
             }
             if snapshot?.exists == true {
-                Firestore.firestore().collection(FirebasePath.like).document(userID).updateData(createData) { (error) in
+                Firestore.firestore().collection(FirebasePath.LikeDislike).document(userID).updateData(createData) { (error) in
                     if let error = error {
                         print(error.localizedDescription)
                     }
+                    if status == 1 {
+                        self.matchControl(profileID: profileID)
+                    }
                 }
             } else {
-                Firestore.firestore().collection(FirebasePath.like).document(userID).setData(createData) { (error) in
+                Firestore.firestore().collection(FirebasePath.LikeDislike).document(userID).setData(createData) { (error) in
                     if let error = error {
                         print(error.localizedDescription)
+                    }
+                    if status == 1 {
+                        self.matchControl(profileID: profileID)
                     }
                 }
             }
         }
+    }
+    
+    fileprivate func createMatchView(profileID: String) {
+        let matchView = MatchView()
+        matchView.profileID = profileID
+        matchView.currentUser = currentUser
+        view.addSubview(matchView)
+        matchView.fillSuperView()
     }
     
     @objc func goToSettings() {
@@ -111,6 +171,12 @@ class UserListViewController: UIViewController {
         viewController.settingsDelegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true, completion: nil)
+    }
+    
+    @objc fileprivate func goToMessages() {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .red
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     fileprivate func transitionAnimation(liked: Bool) {
@@ -137,7 +203,7 @@ class UserListViewController: UIViewController {
 //MARK:- Layout functions
 extension UserListViewController {
     private func configureUI() {
-        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.85)
+        view.backgroundColor = #colorLiteral(red: 0.05060279188, green: 0.05060279188, blue: 0.05060279188, alpha: 1)
         navigationController?.navigationBar.isHidden = true
         let mainStackView = UIStackView(arrangedSubviews: [topStackView, profilesView, bottomStackView ])
         mainStackView.bringSubviewToFront(profilesView)
@@ -165,6 +231,7 @@ extension UserListViewController {
         bottomStackView.likeButton.addTarget(self, action: #selector(profileLiked), for: .touchUpInside)
         bottomStackView.closeButton.addTarget(self, action: #selector(dislikeProfile), for: .touchUpInside)
         topStackView.profileButton.addTarget(self, action: #selector(goToSettings), for: .touchUpInside)
+        topStackView.messageButton.addTarget(self, action: #selector(goToMessages), for: .touchUpInside)
     }
     private func cleanOldProfiles() {
         profilesView.subviews.forEach { $0.removeFromSuperview() }
@@ -172,6 +239,18 @@ extension UserListViewController {
     }
 }
 extension UserListViewController: SettingControllerDelegate {
+    func logout() {
+        print("buraya girdi")
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("User could not exit... Error", error.localizedDescription)
+        }
+        let viewController = SplashScreenViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        present(viewController, animated: true, completion: nil)
+    }
+    
     func settingsSaved() {
         getCurrentUser()
     }

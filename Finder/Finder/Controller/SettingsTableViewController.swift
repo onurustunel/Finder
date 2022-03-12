@@ -106,14 +106,10 @@ class SettingsTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     @objc private func logoutPressed() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("User could not exit... Error", error.localizedDescription)
+        dismiss(animated: true) {
+            self.settingsDelegate?.logout()
         }
-        let viewController = SplashScreenViewController()
-        viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true, completion: nil)
+        
     }
     @objc func updatePersonalInfo() {
         updatePersonalData()
@@ -236,4 +232,5 @@ extension SettingsTableViewController: IAgeRangeSlider {
 }
 protocol SettingControllerDelegate {
     func settingsSaved()
+    func logout()
 }
