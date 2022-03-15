@@ -22,9 +22,10 @@ open class ListCell<T>: UICollectionViewCell {
     }
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = ConstantColor.darkBackgroundColor
+        configureUI()
     }
-    
+    open func configureUI() { }
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

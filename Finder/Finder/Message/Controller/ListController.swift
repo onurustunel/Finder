@@ -7,5 +7,5 @@
 
 import UIKit
 open class ListController<T: ListCell<U>, U>: ListHeaderController<T, U, UICollectionReusableView> {
-    
+
 }

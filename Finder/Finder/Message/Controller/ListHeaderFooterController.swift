@@ -24,10 +24,10 @@ open class ListHeaderFooterController <T: ListCell<U>, U, H: UICollectionReusabl
     }
     open override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = ConstantColor.darkBackgroundColor
         collectionView.register(T.self, forCellWithReuseIdentifier: cellID)
-        collectionView.register(H.self, forCellWithReuseIdentifier: UICollectionView.elementKindSectionHeader)
-        collectionView.register(F.self, forCellWithReuseIdentifier: UICollectionView.elementKindSectionFooter)        
+        collectionView.register(H.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: supplementaryID)
+        collectionView.register(F.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: supplementaryID)
     }
     open override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? T {
@@ -38,10 +38,10 @@ open class ListHeaderFooterController <T: ListCell<U>, U, H: UICollectionReusabl
         return UICollectionViewCell()
     }
     open func setHeader() {
-        
+    
     }
     open func setFooter() {
-        
+    
     }
     open override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: supplementaryID, for: indexPath)

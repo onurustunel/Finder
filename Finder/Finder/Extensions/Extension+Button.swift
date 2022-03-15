@@ -24,6 +24,7 @@ extension UIButton {
             setImage(image, for: .normal)
         } else {
             setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.tintColor = tintColor
         }
         if let action = action {
             addTarget(target, action: action, for: .touchUpInside)

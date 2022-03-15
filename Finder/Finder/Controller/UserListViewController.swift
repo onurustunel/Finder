@@ -17,6 +17,7 @@ class UserListViewController: UIViewController {
     let indicator = UIActivityIndicatorView()
     var shownTopProfileView: UserProfileView?
     var likeDislikesStatus = [String: Int]()
+    var users = [String: User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +51,13 @@ class UserListViewController: UIViewController {
                 self.likeDislikesStatus.removeAll()
                 self.getUserData()
                 return
-                
             }
             self.likeDislikesStatus = likeDislikesStatus
             self.getUserData()
         }
     }
     private func getUserData() {
-        let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").whereField("age", isGreaterThanOrEqualTo: currentUser?.minimumAge ?? 18).whereField("age", isLessThanOrEqualTo: currentUser?.maximumAge ?? 90)
+        let query = Firestore.firestore().collection("\(FirebasePath.userListPath)").whereField("age", isGreaterThanOrEqualTo: currentUser?.minimumAge ?? 18).whereField("age", isLessThanOrEqualTo: currentUser?.maximumAge ?? 90).limit(to: 10)
         var previousProfileView: UserProfileView?
         shownTopProfileView = nil
         query.getDocuments { (snapshot, error) in
@@ -65,6 +65,7 @@ class UserListViewController: UIViewController {
             snapshot?.documents.forEach({ (snapshot) in
                 let userData = snapshot.data()
                 let user = User(userData: userData)
+                self.users[user.userID ?? ""] = user
                 self.usersProfileViewModel.append(user.profileViewModelCreator())
                 
                 let isCurrentUser = user.userID == Auth.auth().currentUser?.uid
@@ -111,8 +112,6 @@ class UserListViewController: UIViewController {
         transitionAnimation(liked: false)
     }
     fileprivate func matchControl(profileID: String) {
-        print(usersProfileViewModel.count - 1)
-        print("match control is working")
         Firestore.firestore().collection(FirebasePath.LikeDislike).document(profileID).getDocument { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -124,9 +123,33 @@ class UserListViewController: UIViewController {
             let isMatched = data[currentUserID] as? Int == 1
             if isMatched {
                 self.createMatchView(profileID: profileID)
+                // eşleşme varsa Firestoreye kaydet
+                guard let matchedUser = self.users[profileID] else { return }
+                let matchProfileData = ["nameSurname": matchedUser.username,
+                                        "imageUrl": matchedUser.firstImageUrl,
+                                        "userID": profileID,
+                                        "timestamp": Timestamp(date: Date())] as [String: Any]
+                Firestore.firestore().collection(FirebasePath.matchingMesage).document(currentUserID).collection(FirebasePath.matching).document(profileID).setData(matchProfileData) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                }
+                guard let currentUser = self.currentUser else { return }
+                let matchUserData = ["nameSurname": currentUser.username,
+                                     "imageUrl": currentUser.firstImageUrl,
+                                     "userID": currentUser.userID,
+                                     "timestamp": Timestamp(date: Date())] as [String: Any]
+                Firestore.firestore().collection(FirebasePath.matchingMesage).document(profileID).collection(FirebasePath.matching).document(currentUserID).setData(matchUserData) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                }
             }
         }
     }
+   
     fileprivate func saveTransitions(status: Int) {
         guard let userID = currentUser?.userID else { return }
         guard let profileID = shownTopProfileView?.userViewModel.userID else { return }
@@ -174,7 +197,7 @@ class UserListViewController: UIViewController {
     }
     
     @objc fileprivate func goToMessages() {
-        let viewController = UIViewController()
+        let viewController = MatchMessageController()
         viewController.view.backgroundColor = .red
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -240,7 +263,6 @@ extension UserListViewController {
 }
 extension UserListViewController: SettingControllerDelegate {
     func logout() {
-        print("buraya girdi")
         do {
             try Auth.auth().signOut()
         } catch {
