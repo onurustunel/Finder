@@ -11,8 +11,8 @@ class MessageNavBar: UIView {
     let usernameLabel = UILabel(text: "", font: .systemFont(ofSize: 14, weight: .bold), textColor: .white, textAlignment: .center)
     let backButton = UIButton(image: #imageLiteral(resourceName: "back"), tintColor: #colorLiteral(red: 0.8616023064, green: 0.3684691787, blue: 0.4407086372, alpha: 1))
     let reportButton = UIButton(image: #imageLiteral(resourceName: "flag"), tintColor: #colorLiteral(red: 0.8616023064, green: 0.3684691787, blue: 0.4407086372, alpha: 1))
+    fileprivate var matching: Matching
     
-    fileprivate var matching: Matching 
      init(matching: Matching) {
         self.matching = matching
         super.init(frame: .zero)
@@ -21,7 +21,6 @@ class MessageNavBar: UIView {
         makeShadow(opacity: 0.15, radius: 10, offset: .init(width: 0, height: 10), color: .init(white: 0, alpha: 0.3))
         configureNavigationBar()
     }
-    
     fileprivate func updateUI(matching: Matching) {
         guard let url = URL(string: matching.profileImageUrl) else { return }
         profileImage.sd_setImage(with: url)

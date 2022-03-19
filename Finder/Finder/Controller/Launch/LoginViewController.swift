@@ -87,7 +87,6 @@ class LoginViewController: UIViewController {
     }
     private func notificationObserve() {
         NotificationCenter.default.addObserver(self, selector: #selector(captureKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(hideShownKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     @objc private func textChanged(textField: UITextField) {
        if textField == textEmailAddress {

@@ -6,8 +6,7 @@
 //
 
 import UIKit
-class GradientBorderButton: UIButton {
-    
+class GradientBorderButton: UIButton {    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         let gLayer = CAGradientLayer()

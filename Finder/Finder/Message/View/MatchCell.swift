@@ -7,15 +7,19 @@
 
 import UIKit
 class MatchCell: ListCell<Matching> {
-    let profileImage = UIImageView(image: UIImage(named: "gencay"), contentMode: .scaleAspectFill)
-    let usernameLabel = UILabel(text: "Gencay", font: .systemFont(ofSize: 15, weight: .bold),
+    let profileImage = UIImageView(image: UIImage(), contentMode: .scaleAspectFill)
+    let usernameLabel = UILabel(text: "", font: .systemFont(ofSize: 15, weight: .bold),
                                 textColor: .darkGray, textAlignment: .center, numberOfLines: 2)
     override var data: Matching! {
         didSet {
             updateUI(data: data)
         }
     }
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        usernameLabel.text = nil
+        profileImage.image = nil
+    }
     override func configureUI() {
         super.configureUI()
         profileImage.clipsToBounds = true

@@ -81,7 +81,6 @@ class SettingsTableViewController: UITableViewController {
             self.settingsDelegate?.settingsSaved()
         }
     }
-    
     fileprivate func getProfileImages() {
         if let profileImageUrl = currentUser?.firstImageUrl,
            let url = URL(string: "\(profileImageUrl)") {

@@ -37,18 +37,18 @@ open class ListHeaderFooterController <T: ListCell<U>, U, H: UICollectionReusabl
         }
         return UICollectionViewCell()
     }
-    open func setHeader() {
+    open func setHeader(_ header: H) {
     
     }
-    open func setFooter() {
+    open func setFooter(_ footer: F) {
     
     }
     open override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: supplementaryID, for: indexPath)
-        if let _ = supplementaryView as? H {
-            setHeader()
-        } else if let _ = supplementaryView as? F {
-            setFooter()
+        if let header = supplementaryView as? H {
+            setHeader(header)
+        } else if let footer = supplementaryView as? F {
+            setFooter(footer)
         }
         return supplementaryView
     }

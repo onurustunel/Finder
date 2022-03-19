@@ -38,8 +38,7 @@ class ImageSlidePageViewController: UIPageViewController {
             barView.backgroundColor = .gray
             barStackView.addArrangedSubview(barView)
         }
-    }
-    
+    }    
 }
 extension ImageSlidePageViewController {
     private func makeBarView() {

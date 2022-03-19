@@ -140,7 +140,8 @@ class UserProfileView: UIView {
         let imageName = userViewModel.imageNames.first ?? ""
         if let imageUrl = URL(string: imageName) {
             self.imageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeHolderProfil")!, options: .continueInBackground)
-        } else {
+        }
+        else {
             self.imageView.image = UIImage(named: "placeHolderProfil")
         }
         usernameLabel.attributedText = userViewModel.attributedString
@@ -150,7 +151,8 @@ class UserProfileView: UIView {
         userViewModel.imageIndexObserver = { [weak self] (index, imageUrl) in
             if let imageUrl = URL(string: imageUrl ?? "") {
                 self?.imageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeHolderProfil")!, options: .continueInBackground)
-            } else {
+            }
+            else {
                 self?.imageView.image = UIImage(named: "placeHolderProfil")
             }
             

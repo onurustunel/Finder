@@ -20,6 +20,7 @@ class SplashView: BaseView {
     private lazy var sloganLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.appFontStyle(size: 40, style: .bold)
+        label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -29,6 +30,7 @@ class SplashView: BaseView {
         label.font = AppFont.appFontStyle(size: 18, style: .normal)
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.textColor = .white
         return label
     }()
     let registerButton: UIButton = {
@@ -58,7 +60,7 @@ class SplashView: BaseView {
         super.updateUI()
         DispatchQueue.main.async {
             self.imageView.image = UIImage(named: "splashImage")
-            self.sloganLabel.text = "Find your best with Finder"
+            self.sloganLabel.text = "Find your best friend with Finder"
             self.descriptionLabel.text = "Finder helps you to find new friends around you. There is too many users in Finder and Thousand of people join us everyday"
         }
     }
@@ -80,4 +82,4 @@ class SplashView: BaseView {
             view.animationFadein(startingAlpha: 0.3, duration: 1, curve: .curveEaseInOut)
         }
     }
-    }
+}

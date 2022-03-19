@@ -57,7 +57,6 @@ class MatchView: BaseView {
     let messageButton: UIButton = {
         let button = GradientButton(type: .system)
         button.setTitle(  " SEND MESSAGE ", for: .normal)
-//        button.backgroundColor = ConstantColor.white
         button.layer.cornerRadius = 20
         button.titleLabel?.font = AppFont.appFontStyle(size: 20, style: .normal)
         button.setTitleColor(ConstantColor.white, for: .normal)
@@ -86,13 +85,12 @@ class MatchView: BaseView {
         visualViewShow()
         setView()
         updateText()
-        
     }
     override func updateUI() {
         super.updateUI()
     }
     fileprivate func updateText() {
-        infoLabel.text = "You matched with \("Ali")"
+        infoLabel.text = ""
     }
     
     fileprivate func visualViewShow() {

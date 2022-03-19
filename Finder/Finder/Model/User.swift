@@ -11,7 +11,6 @@ struct User: UserProfileViewModelCreator {
     var username: String?
     var occupation: String?
     var age: Int?
-//    let imageNames: [String]
     var firstImageUrl: String?
     var secondImageUrl: String?
     var thirdImageUrl: String?

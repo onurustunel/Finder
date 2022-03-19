@@ -13,4 +13,5 @@ struct FirebasePath {
     static let LikeDislike = "LikeDislike"
     static let matchingMesage = "MatchingMessage"
     static let matching = "Matching"
+    static let lastMessages = "LastMessages"
 }

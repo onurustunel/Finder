@@ -37,6 +37,4 @@ extension UIStackView {
         layoutMargins.right = right
         return self
     }
-    
 }
-

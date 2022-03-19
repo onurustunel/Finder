@@ -47,7 +47,7 @@ class UserListViewController: UIViewController {
                 print(error.localizedDescription)
                 return
             }
-            guard let likeDislikesStatus = snapshot?.data() as? [String : Int]  else {
+            guard let likeDislikesStatus = snapshot?.data() as? [String : Int] else {
                 self.likeDislikesStatus.removeAll()
                 self.getUserData()
                 return
@@ -69,8 +69,8 @@ class UserListViewController: UIViewController {
                 self.usersProfileViewModel.append(user.profileViewModelCreator())
                 
                 let isCurrentUser = user.userID == Auth.auth().currentUser?.uid
-//                let shownBefore = self.likeDislikesStatus[user.userID ?? ""] != nil
-                let shownBefore = false
+                let shownBefore = self.likeDislikesStatus[user.userID ?? ""] != nil
+//                let shownBefore = false
                 if !isCurrentUser && !shownBefore {
                     let profileView = self.createProfileFromUser(user: user)
                     if self.shownTopProfileView == nil {
@@ -93,14 +93,8 @@ class UserListViewController: UIViewController {
         return profileView
     }
     @objc func refreshUserList() {
-//        if shownTopProfileView == nil {
-//            usersProfileViewModel.removeAll()
-//            self.getCurrentUser()
-//        }
         profilesView.subviews.forEach { $0.removeFromSuperview() }
         self.getCurrentUser()
-        
-        
     }
     //MARK:- Like a profile
     @objc func profileLiked() {
@@ -123,7 +117,6 @@ class UserListViewController: UIViewController {
             let isMatched = data[currentUserID] as? Int == 1
             if isMatched {
                 self.createMatchView(profileID: profileID)
-                // eşleşme varsa Firestoreye kaydet
                 guard let matchedUser = self.users[profileID] else { return }
                 let matchProfileData = ["nameSurname": matchedUser.username,
                                         "imageUrl": matchedUser.firstImageUrl,
@@ -272,7 +265,6 @@ extension UserListViewController: SettingControllerDelegate {
         viewController.modalPresentationStyle = .overFullScreen
         present(viewController, animated: true, completion: nil)
     }
-    
     func settingsSaved() {
         getCurrentUser()
     }
@@ -281,16 +273,13 @@ extension UserListViewController: ProfileDetailDelegate {
     func likedUser(profile: UserProfileView) {
         saveTransitions(status: 1)
     }
-    
     func dislikedUser(profile: UserProfileView) {
         saveTransitions(status: -1)
     }
-    
     func removeProfileView(profile: UserProfileView) {
         self.shownTopProfileView?.removeFromSuperview()
         self.shownTopProfileView = self.shownTopProfileView?.nextProfileView
     }
-    
     func showProfileDetail(userViewModel: UserProfileViewModel) {
         let viewController = UserDetailViewController()
         viewController.userDetail = userViewModel
