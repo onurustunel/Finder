@@ -6,9 +6,10 @@
 //
 
 import UIKit
+
 class InputBarKeyboardView: UIView {
     let messageTextView = UITextView()
-    let sendButton = UIButton(title: " Send ", titleColor: .white, titleFont: .systemFont(ofSize: 14, weight: .bold), background: .clear)
+    let sendButton = UIButton(image: UIImage(systemName: SendButtonConstant.camera.rawValue) ?? UIImage(), tintColor: .white)
     let placeholderLabel = UILabel(text: "Message...", font: .systemFont(ofSize: 14), textColor: .lightGray)
     
     override var intrinsicContentSize: CGSize {
@@ -27,15 +28,18 @@ class InputBarKeyboardView: UIView {
     }
     @objc fileprivate func textViewChange() {
         placeholderLabel.isHidden = messageTextView.text.count != 0
-        sendButton.isEnabled = messageTextView.text.count != 0
+        if  messageTextView.text.count == 0 {
+            sendButton.setImage(UIImage(systemName: SendButtonConstant.camera.rawValue), for: .normal)
+        } else {
+            sendButton.setImage(UIImage(systemName: SendButtonConstant.text.rawValue), for: .normal)
+        }
     }
     private func inputView() {
-        sendButton.isEnabled = false
         messageTextView.font = .systemFont(ofSize: 14)
         messageTextView.isScrollEnabled = false
         messageTextView.layer.cornerRadius = 16
         messageTextView.backgroundColor = #colorLiteral(red: 0.1995537281, green: 0.2197108269, blue: 0.2333216071, alpha: 1)
-        createHorizontalStackView(messageTextView, sendButton.sizing(.init(width: 65, height: 50)),
+        createHorizontalStackView(messageTextView, sendButton.sizing(.init(width: 40, height: 50)),
                                   alignment: .center).withMarging(.init(top: 0, left: 15, bottom: 0, right: 15))
         addSubview(placeholderLabel)
         placeholderLabel.anchor(top: nil, bottom: nil, leading: leadingAnchor, trailing: sendButton.leadingAnchor,

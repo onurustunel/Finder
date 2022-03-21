@@ -20,8 +20,7 @@ class MatchHeader: UICollectionReusableView {
                         horizontalViewController.view,
                         createStackView(messagesLabel).padLeft(20),
                         spacing: 20).withMarging(.init(top: 20, left: 0, bottom: 10, right: 0))
-        horizontalViewController.delegate = self
-        
+        horizontalViewController.delegate = self        
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

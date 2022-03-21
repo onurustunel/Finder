@@ -10,6 +10,7 @@
 		1824D87807B3D2B95D798B68 /* Pods_Finder_FinderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1277FA707E2E955EACB4AC4 /* Pods_Finder_FinderUITests.framework */; };
 		5B85C623942BD9DD806413DE /* Pods_FinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95E0E6C33296A9114F58D36 /* Pods_FinderTests.framework */; };
 		5C59322956E4BA2ECBBC244C /* Pods_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE38ED668155EE480A0E070D /* Pods_Finder.framework */; };
+		770C8BE527E7D57100EDE88B /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770C8BE427E7D57100EDE88B /* ImageCell.swift */; };
 		77195A72274ECA56006B30C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195A71274ECA56006B30C4 /* AppDelegate.swift */; };
 		77195A74274ECA56006B30C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195A73274ECA56006B30C4 /* SceneDelegate.swift */; };
 		77195A76274ECA56006B30C4 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77195A75274ECA56006B30C4 /* UserListViewController.swift */; };
@@ -67,6 +68,9 @@
 		77B6CDD827E5069600F221BA /* MatchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6CDD727E5069600F221BA /* MatchHeader.swift */; };
 		77B6CDDD27E51B4600F221BA /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6CDDC27E51B4600F221BA /* ConversationCell.swift */; };
 		77B6CDEA27E53CA200F221BA /* LastConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6CDE927E53CA200F221BA /* LastConversation.swift */; };
+		77C7E7F927E8CD1A002CB79E /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C7E7F827E8CD1A002CB79E /* MessageType.swift */; };
+		77C7E7FE27E8F771002CB79E /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C7E7FD27E8F771002CB79E /* ImagePreviewViewController.swift */; };
+		77C7E80627E91808002CB79E /* SendButtonConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C7E80527E91808002CB79E /* SendButtonConstant.swift */; };
 		77CD45B227C93519007769FA /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CD45B127C93519007769FA /* FirebasePath.swift */; };
 		77D820812784DF3400613E93 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D820802784DF3400613E93 /* Extension+UIViewController.swift */; };
 		77E11DCE27C57AD000D4C8F6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E11DCD27C57AD000D4C8F6 /* SettingsTableViewCell.swift */; };
@@ -100,6 +104,7 @@
 
 /* Begin PBXFileReference section */
 		6F252A2876CF37881F4E597F /* Pods-Finder-FinderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finder-FinderUITests.debug.xcconfig"; path = "Target Support Files/Pods-Finder-FinderUITests/Pods-Finder-FinderUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		770C8BE427E7D57100EDE88B /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		77195A6E274ECA56006B30C4 /* Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77195A71274ECA56006B30C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77195A73274ECA56006B30C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +168,9 @@
 		77B6CDD727E5069600F221BA /* MatchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeader.swift; sourceTree = "<group>"; };
 		77B6CDDC27E51B4600F221BA /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		77B6CDE927E53CA200F221BA /* LastConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastConversation.swift; sourceTree = "<group>"; };
+		77C7E7F827E8CD1A002CB79E /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		77C7E7FD27E8F771002CB79E /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
+		77C7E80527E91808002CB79E /* SendButtonConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButtonConstant.swift; sourceTree = "<group>"; };
 		77CD45B127C93519007769FA /* FirebasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
 		77D820802784DF3400613E93 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		77E11DCD27C57AD000D4C8F6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -401,6 +409,8 @@
 				777129FB27DE992000E14FC4 /* Matching.swift */,
 				77E5AAED27E28F980009BF6F /* Message.swift */,
 				77B6CDE927E53CA200F221BA /* LastConversation.swift */,
+				77C7E7F827E8CD1A002CB79E /* MessageType.swift */,
+				77C7E80527E91808002CB79E /* SendButtonConstant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -426,6 +436,8 @@
 				77E5AAE827E28F590009BF6F /* MessageCell.swift */,
 				77B6CDD727E5069600F221BA /* MatchHeader.swift */,
 				77B6CDDC27E51B4600F221BA /* ConversationCell.swift */,
+				770C8BE427E7D57100EDE88B /* ImageCell.swift */,
+				77C7E7FD27E8F771002CB79E /* ImagePreviewViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -736,12 +748,14 @@
 				779A72BB27DCDC2E00D62284 /* ShadowView.swift in Sources */,
 				77E5AAE427E2884E0009BF6F /* InputBarKeyboardView.swift in Sources */,
 				774C8DBD2767F13B00DFBA15 /* Bindable.swift in Sources */,
+				77C7E7FE27E8F771002CB79E /* ImagePreviewViewController.swift in Sources */,
 				777129F627DE823900E14FC4 /* MessageNavBar.swift in Sources */,
 				777129F127DE7F7000E14FC4 /* ChatViewController.swift in Sources */,
 				77CD45B227C93519007769FA /* FirebasePath.swift in Sources */,
 				779A72EF27DCEEC300D62284 /* ListHeaderFooterController.swift in Sources */,
 				77656CB827CECC10008B9B63 /* UserDetailViewController.swift in Sources */,
 				779A730627DD2C8D00D62284 /* MatchNavBar.swift in Sources */,
+				77C7E80627E91808002CB79E /* SendButtonConstant.swift in Sources */,
 				779A72A227DCC2B700D62284 /* TextFieldIntend.swift in Sources */,
 				779A730127DD1D7F00D62284 /* MatchMessageController.swift in Sources */,
 				772A5BA6275BC71E00BBE25F /* CustomTextField.swift in Sources */,
@@ -771,6 +785,7 @@
 				774C8D962767C6FD00DFBA15 /* RegisterViewModel.swift in Sources */,
 				77F4777E27DBFF4C004E38C7 /* GradientBorderButton.swift in Sources */,
 				779A72FC27DCF71400D62284 /* ListController.swift in Sources */,
+				77C7E7F927E8CD1A002CB79E /* MessageType.swift in Sources */,
 				7727ECA827500B6000358027 /* UserListBottomStackView.swift in Sources */,
 				772A5B8A275B839F00BBE25F /* BaseView.swift in Sources */,
 				779A729D27DCC22C00D62284 /* ImageViewAspectFill.swift in Sources */,
@@ -784,6 +799,7 @@
 				77D820812784DF3400613E93 /* Extension+UIViewController.swift in Sources */,
 				77195A74274ECA56006B30C4 /* SceneDelegate.swift in Sources */,
 				77B6CDDD27E51B4600F221BA /* ConversationCell.swift in Sources */,
+				770C8BE527E7D57100EDE88B /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

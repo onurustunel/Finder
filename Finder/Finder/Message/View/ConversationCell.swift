@@ -8,9 +8,9 @@
 import UIKit
 
 class ConversationCell: ListCell<LastConversation> {
-    let profileImage = UIImageView(image: UIImage(named: "gencay"), contentMode: .scaleAspectFill)
-    let usernameLabel = UILabel(text: "Username", font: .boldSystemFont(ofSize: 17), textColor: UIColor(white: 1, alpha: 0.8))
-    let messageLabel = UILabel(text: "Burada son mesaj", font: .systemFont(ofSize: 16), textColor: .gray, numberOfLines: 2)
+    let profileImage = UIImageView(image: UIImage(), contentMode: .scaleAspectFill)
+    let usernameLabel = UILabel(text: "", font: .boldSystemFont(ofSize: 17), textColor: UIColor(white: 1, alpha: 0.8))
+    let messageLabel = UILabel(text: "", font: .systemFont(ofSize: 16), textColor: .gray, numberOfLines: 2)
     override var data: LastConversation! {
         didSet {
             updateData(data: data)
