@@ -22,9 +22,7 @@ class UserListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.getCurrentUser()
-        }
+        getCurrentUser()
     }
     fileprivate func getCurrentUser() {
         self.cleanOldProfiles()
@@ -34,7 +32,6 @@ class UserListViewController: UIViewController {
                 return
             }
             self.currentUser = user
-//            self.getUserData()
             self.getLikeDislikes()
         }
     }
@@ -67,7 +64,6 @@ class UserListViewController: UIViewController {
                 let user = User(userData: userData)
                 self.users[user.userID ?? ""] = user
                 self.usersProfileViewModel.append(user.profileViewModelCreator())
-                
                 let isCurrentUser = user.userID == Auth.auth().currentUser?.uid
                 let shownBefore = self.likeDislikesStatus[user.userID ?? ""] != nil
 //                let shownBefore = false
@@ -191,7 +187,6 @@ class UserListViewController: UIViewController {
     
     @objc fileprivate func goToMessages() {
         let viewController = MatchMessageController()
-        viewController.view.backgroundColor = .red
         navigationController?.pushViewController(viewController, animated: true)
     }
     
